@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { useState } from 'react';
+import { useRouter } from 'next/navigation'
 
 
 
@@ -91,9 +92,15 @@ export default function Branding() {
   const [direction, setDirection] = useState(0); // -1 left, 1 right
   const [hovered, setHovered] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
 
   // Staggered top offsets like in the screenshot (col1 lower, col2 middle, col3 top)
   const offsets = ["mt-16", "mt-8", "mt-0"];
+
+  const handleServiceClick = (serviceNumber: number) => {
+    console.log(`Branding service ${serviceNumber} clicked - redirecting to submain`);
+    router.push(`/submain?solution=${serviceNumber}`);
+  };
 
   const goTo = (idx, dir) => {
     if (animating) return;
@@ -617,7 +624,7 @@ Build strong, powerful brands through strategic identity and consistent presenta
           <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
         .services-section * { font-family: 'DM Sans', sans-serif; }
-        .service-card { transition: border-color 0.2s; }
+        .service-card { transition: border-color 0.2s; cursor: pointer; }
         .service-card:hover .arrow-icon { opacity: 1; color: #111; }
         .arrow-icon { transition: opacity 0.2s, color 0.2s; opacity: 0.4; }
         .icon-wrap { transition: opacity 0.2s; }
@@ -639,9 +646,10 @@ Build strong, powerful brands through strategic identity and consistent presenta
                 return (
                   <div
                     key={idx}
-                    className={`service-card group relative pt-8 pb-10 border-t border-gray-300 hover:border-gray-800 ${idx >= 2 ? offsetClass + " mt-10" : offsetClass}`}
+                    className={`service-card group relative pt-8 pb-10 border-t border-gray-300 hover:border-gray-800 ${idx >= 2 ? offsetClass + " mt-10" : offsetClass} cursor-pointer`}
                     onMouseEnter={() => setHovered(idx)}
                     onMouseLeave={() => setHovered(null)}
+                    onClick={() => handleServiceClick(idx + 4)}
                   >
                     {/* Arrow top-right */}
                     <div className="arrow-icon absolute top-8 right-0 text-gray-500">

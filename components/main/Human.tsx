@@ -1,7 +1,8 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useState } from 'react';
+import { useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 
 
@@ -86,13 +87,20 @@ const clients = [
 
 export default function Human() {
 
+  const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [direction, setDirection] = useState(0); // -1 left, 1 right
   const [hovered, setHovered] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Staggered top offsets like in the screenshot (col1 lower, col2 middle, col3 top)
+  const handleServiceClick = (serviceNumber: number) => {
+    console.log(`Human service ${serviceNumber} clicked - redirecting to submain`);
+    router.push(`/submain?solution=${serviceNumber}`);
+  };
+
+  const conClick = (idx: number) => () => handleServiceClick(idx + 6);
+
   const offsets = ["mt-16", "mt-8", "mt-0"];
 
   const goTo = (idx, dir) => {
@@ -656,6 +664,7 @@ Empower your workforce with strategic recruitment and HR management solutions. H
                     className={`service-card group relative pt-8 pb-10 border-t border-gray-300 hover:border-gray-800 ${idx >= 3 ? offsetClass + " mt-10" : offsetClass}`}
                     onMouseEnter={() => setHovered(idx)}
                     onMouseLeave={() => setHovered(null)}
+                    onClick={() => handleServiceClick(idx + 6)}
                   >
                     {/* Arrow top-right */}
                     <div className="arrow-icon absolute top-8 right-0 text-gray-500">

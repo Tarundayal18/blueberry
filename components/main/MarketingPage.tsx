@@ -1,7 +1,8 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useState } from 'react';
+import { useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 
 
@@ -86,11 +87,17 @@ const clients = [
 
 export default function Marketing() {
 
+  const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [direction, setDirection] = useState(0); // -1 left, 1 right
   const [hovered, setHovered] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleServiceClick = (serviceNumber: number) => {
+    console.log(`Service ${serviceNumber} clicked - redirecting to submain`);
+    router.push(`/submain?solution=${serviceNumber}`);
+  };
 
   // Staggered top offsets like in the screenshot (col1 lower, col2 middle, col3 top)
   const offsets = ["mt-16", "mt-8", "mt-0"];
@@ -656,6 +663,7 @@ export default function Marketing() {
                     className={`service-card group relative pt-8 pb-10 border-t border-gray-300 hover:border-gray-800 ${idx >= 3 ? offsetClass + " mt-10" : offsetClass}`}
                     onMouseEnter={() => setHovered(idx)}
                     onMouseLeave={() => setHovered(null)}
+                    onClick={() => handleServiceClick(idx + 1)}
                   >
                     {/* Arrow top-right */}
                     <div className="arrow-icon absolute top-8 right-0 text-gray-500">
@@ -682,6 +690,8 @@ export default function Marketing() {
             </div>
           </div>
         </section>
+
+      
 
         {/* Collaborations Section - White Background */}
         <section className="relative z-5 bg-white py-16 md:py-24 border-t border-gray-200">
