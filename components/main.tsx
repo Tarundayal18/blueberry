@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { Plus, Lock, ArrowRight } from 'lucide-react'
 import { motion, useInView, Variants } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
-import { pageData, pageData2, pageData3, pageData4, pageData5, pageData6, pageData7, pageData8, pageData9 } from '../../data/pageData'
+import { pageData, pageData2, pageData3, pageData4, pageData5, pageData6, pageData7, pageData8, pageData9 } from '../data/pageData'
 export default function Main() {
   const [email, setEmail] = useState('')
   const featuresRef = useRef(null)

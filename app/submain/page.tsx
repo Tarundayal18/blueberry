@@ -1,5 +1,5 @@
-import Main from '@/components/submain/main'
+import MainWrapper from '@/components/main-wrapper'
 
 export default function SubMainPage() {
-  return <Main />
+  return <MainWrapper />
 }
