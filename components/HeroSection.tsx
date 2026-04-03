@@ -1,54 +1,3 @@
-// import React from 'react'
-
-// export default function HeroSection() {
-//   return (
-//     <section className="relative py-6 sm:py-8 flex-1 flex items-center">
-//       {/* Decorative stars - responsive positioning */}
-//       <div className="absolute top-2 left-2 sm:top-4 sm:left-8 text-xl sm:text-2xl md:text-3xl opacity-60" style={{ color: '#B9B9FF' }}>✦</div>
-//       <div className="absolute top-8 left-6 sm:top-16 sm:left-20 text-2xl sm:text-3xl md:text-4xl opacity-40" style={{ color: '#B9B9FF' }}>✳️</div>
-//       <div className="absolute top-4 right-2 sm:top-8 sm:right-16 text-xl sm:text-2xl md:text-3xl opacity-60" style={{ color: '#B9B9FF' }}>✦</div>
-//       <div className="absolute bottom-8 left-4 sm:bottom-12 sm:left-24 text-2xl sm:text-3xl md:text-4xl opacity-40" style={{ color: '#B9B9FF' }}>✳️</div>
-//       <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-24 text-xl sm:text-2xl md:text-3xl opacity-60" style={{ color: '#B9B9FF' }}>✦</div>
-
-//       <div className="max-w-4xl mx-auto text-center relative z-10 px-4">
-//         {/* Agenda Badge */}
-//         <div 
-//           className="inline-block px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-black mb-4 sm:mb-6 text-white tracking-wider"
-//           style={{ background: '#09094C' }}
-//         >
-//           MARKETING
-//         </div>
-
-//         {/* Main Headline */}
-//         <h1 
-//           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-3 sm:mb-4 leading-tight"
-//           style={{ color: '#464196' }}
-//         >
-//           FIND OUT<br />
-//           WHAT&apos;S ON<br />
-//           AND WHEN
-//         </h1>
-
-//         {/* Subheading */}
-//         <p 
-//           className="text-base sm:text-lg md:text-xl font-medium"
-//           style={{ color: '#464196' }}
-//         >
-//           See the schedule and set times.
-//         </p>
-
-//         {/* Landing Page Button */}
-//         <button 
-//           onClick={() => window.location.href = '/marketing'}
-//           className="mt-8 px-6 py-3 bg-[#464196] hover:bg-[#09094C] text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105"
-//         >
-//           View Digital Marketing Landing Page
-//         </button>
-//       </div>
-//     </section>
-//   )
-// }
-
 
 import React from 'react'
 
@@ -139,7 +88,7 @@ export default function HeroSection() {
   const shapeColorLight = '#9B30FF'
 
   return (
-    <section className="relative py-6 sm:py-8 flex-1 flex items-center">
+    <section className="relative h-full flex items-center">
       <style>{animationStyles}</style>
 
       {/* === Decorative Cycling Shapes === */}
@@ -176,12 +125,20 @@ export default function HeroSection() {
 
       {/* === Main Content === */}
       <div className="max-w-4xl mx-auto text-center relative z-10 px-4">
+
+        <div className="mb-3 sm:mb-4">
+          <img 
+            src="/blueberrie01.png" 
+            alt="Blueberrie" 
+            className="w-12 h-12 sm:w-16 sm:h-16 mx-auto object-contain"
+          />
+        </div>
         {/* Agenda Badge */}
         <div
           className="inline-block px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-black mb-4 sm:mb-6 text-white tracking-wider"
           style={{ background: '#09094C' }}
         >
-          MARKETING
+          Pulse
         </div>
 
         {/* Main Headline */}
@@ -207,7 +164,7 @@ export default function HeroSection() {
           onClick={() => window.location.href = '/marketing'}
           className="mt-8 px-6 py-3 bg-[#464196] hover:bg-[#09094C] text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105"
         >
-          View Digital Marketing Landing Page
+          Know More
         </button>
       </div>
     </section>

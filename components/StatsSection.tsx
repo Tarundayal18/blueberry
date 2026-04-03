@@ -1,11 +1,40 @@
 import React from 'react'
 
-export default function StatsSection() {
-  const stats = [
-    { number: '12', label: 'LIVE SHOWS' },
-    { number: '13', label: 'FOOD EVENTS' },
-    { number: '10', label: 'WORKSHOPS' }
-  ]
+interface StatsSectionProps {
+  section?: 'branding' | 'hr-home' | 'food-home' | 'marketing'
+}
+
+export default function StatsSection({ section = 'marketing' }: StatsSectionProps) {
+  const getStatsForSection = () => {
+    switch(section) {
+      case 'branding':
+        return [
+          { number: '123', label: 'Brands Created' },
+          { number: '91', label: 'Brand Systems Delivered' },
+          { number: '6', label: 'Industries Served' }
+        ]
+      case 'hr-home':
+        return [
+          { number: '24', label: 'Setups Build' },
+          { number: '15', label: 'Growth Engines Delivered' },
+          { number: '6', label: 'Industries Served' }
+        ]
+      case 'food-home':
+        return [
+          { number: '12', label: 'LIVE SHOWS' },
+          { number: '13', label: 'FOOD EVENTS' },
+          { number: '10', label: 'WORKSHOPS' }
+        ]
+      default:
+        return [
+          { number: '24', label: 'Setups Build' },
+          { number: '15', label: 'Growth Engines Delivered' },
+          { number: '6', label: 'Industries Served' }
+        ]
+    }
+  }
+
+  const stats = getStatsForSection()
 
   return (
     <section className="py-6 px-4">

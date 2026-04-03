@@ -87,7 +87,7 @@ export default function HeroSection() {
   const shapeColorLight = '#9B30FF'
 
   return (
-    <section className="relative py-6 sm:py-8 flex-1 flex items-center">
+    <section className="relative h-full flex items-center">
       <style>{animationStyles}</style>
 
       {/* === Decorative Cycling Shapes === */}
@@ -122,12 +122,21 @@ export default function HeroSection() {
         <CyclingShape color={shapeColor} size={26} initialIndex={2} />
       </div>
       <div className="max-w-4xl mx-auto text-center relative z-10 px-4">
+        {/* Blueberrie Logo */}
+        <div className="mb-3 sm:mb-4">
+          <img 
+            src="/blueberrie01.png" 
+            alt="Blueberrie" 
+            className="w-12 h-12 sm:w-16 sm:h-16 mx-auto object-contain"
+          />
+        </div>
+        
         {/* Branding Badge */}
         <div 
           className="inline-block px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-black mb-4 sm:mb-6 text-white tracking-wider"
           style={{ background: '#B9B9FF' }}
         >
-          BRANDING
+          Brands
         </div>
 
         {/* Main Headline */}
@@ -136,8 +145,8 @@ export default function HeroSection() {
           style={{ color: '#464196' }}
         >
           BUILD YOUR<br />
-          BRAND IDENTITY<br />
-          WITH STYLE
+          BRAND<br />
+          WITH BLUEBERRIE
         </h1>
 
         {/* Subheading */}
@@ -152,7 +161,7 @@ export default function HeroSection() {
           onClick={() => window.location.href = '/branding'}
           className="mt-8 px-6 py-3 bg-[#464196] hover:bg-[#09094C] text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105"
         >
-          View Branding Page
+          Know More
         </button>
       </div>
     </section>
