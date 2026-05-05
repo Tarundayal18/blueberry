@@ -29,21 +29,21 @@ const shapes = [
   // Starburst (many spikes)
   (color: string, size: number) => (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {[0,30,60,90,120,150,180,210,240,270,300,330].map((angle, i) => {
+      {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle, i) => {
         const rad = (angle * Math.PI) / 180
         const x2 = 20 + 18 * Math.cos(rad)
         const y2 = 20 + 18 * Math.sin(rad)
-        return <line key={i} x1="20" y1="20" x2={x2} y2={y2} stroke={color} strokeWidth="2.5" strokeLinecap="round"/>
+        return <line key={i} x1="20" y1="20" x2={x2} y2={y2} stroke={color} strokeWidth="2.5" strokeLinecap="round" />
       })}
     </svg>
   ),
   // 4-point cross / plus shape
   (color: string, size: number) => (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="20" y1="2" x2="20" y2="38" stroke={color} strokeWidth="3" strokeLinecap="round"/>
-      <line x1="2" y1="20" x2="38" y2="20" stroke={color} strokeWidth="3" strokeLinecap="round"/>
-      <line x1="8" y1="8" x2="32" y2="32" stroke={color} strokeWidth="2" strokeLinecap="round"/>
-      <line x1="32" y1="8" x2="8" y2="32" stroke={color} strokeWidth="2" strokeLinecap="round"/>
+      <line x1="20" y1="2" x2="20" y2="38" stroke={color} strokeWidth="3" strokeLinecap="round" />
+      <line x1="2" y1="20" x2="38" y2="20" stroke={color} strokeWidth="3" strokeLinecap="round" />
+      <line x1="8" y1="8" x2="32" y2="32" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <line x1="32" y1="8" x2="8" y2="32" stroke={color} strokeWidth="2" strokeLinecap="round" />
     </svg>
   ),
   // 5-point star
@@ -58,8 +58,8 @@ const shapes = [
   // X shape
   (color: string, size: number) => (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="6" y1="6" x2="34" y2="34" stroke={color} strokeWidth="4" strokeLinecap="round"/>
-      <line x1="34" y1="6" x2="6" y2="34" stroke={color} strokeWidth="4" strokeLinecap="round"/>
+      <line x1="6" y1="6" x2="34" y2="34" stroke={color} strokeWidth="4" strokeLinecap="round" />
+      <line x1="34" y1="6" x2="6" y2="34" stroke={color} strokeWidth="4" strokeLinecap="round" />
     </svg>
   ),
 ]
@@ -72,7 +72,7 @@ function CyclingShape({ color, size, initialIndex = 0 }: { color: string; size: 
     const interval = setInterval(() => {
       setShapeIndex(prev => (prev + 1) % 4)
     }, 400)
-    
+
     return () => clearInterval(interval)
   }, [])
 
@@ -127,9 +127,9 @@ export default function HeroSection() {
       <div className="max-w-4xl mx-auto text-center relative z-10 px-4">
 
         <div className="mb-3 sm:mb-4">
-          <img 
-            src="/blueberrie01.png" 
-            alt="Blueberrie" 
+          <img
+            src="/blueberrie01.png"
+            alt="Blueberrie"
             className="w-12 h-12 sm:w-16 sm:h-16 mx-auto object-contain"
           />
         </div>
@@ -146,9 +146,10 @@ export default function HeroSection() {
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-3 sm:mb-4 leading-tight"
           style={{ color: '#464196' }}
         >
-          FIND OUT<br />
-          WHAT&apos;S ON<br />
-          AND WHEN
+          BUILD THE RIGHT
+          <br />
+          REVENUE DRIVER<br />
+          WITH BLUEBERRIE
         </h1>
 
         {/* Subheading */}

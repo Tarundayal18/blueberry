@@ -42,7 +42,7 @@ export default function Home() {
     <div className="h-screen bg-white overflow-hidden flex flex-col lg:flex-row" style={{ fontFamily: 'Lato, sans-serif' }}>
       {/* Left Side - Header, Content, Stats */}
       <div className="flex-1 lg:w-[75%] flex flex-col h-screen">
-        <Header />
+        <Header activeTab={activeTab} />
         <div className="flex-1 px-4 sm:px-8 py-4 lg:px-12 relative overflow-hidden">
           <div className="h-full flex flex-col">
             <div className="flex-1">

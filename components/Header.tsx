@@ -1,14 +1,31 @@
 import Image from 'next/image'
 import React from 'react'
 
-export default function Header() {
+interface HeaderProps {
+  activeTab?: string
+}
+
+export default function Header({ activeTab }: HeaderProps) {
+  const getPageName = () => {
+    switch(activeTab) {
+      case 'branding':
+        return 'Brands';
+      case 'hr-home':
+        return 'Humans';
+      case 'food-home':
+        return 'Flavours';
+      default:
+        return 'Pulse';
+    }
+  };
+
   return (
-    <header className="px-4 sm:px-8 md:px-16 py-4 sm:py-6 flex justify-between items-center">
+    <header className="px-4 sm:px-8 md:px-16 py-2 sm:py-3 flex justify-between items-center">
       <div className="flex items-center gap-2 sm:gap-3">
         {/* <div className="w-8 h-8 sm:w-10 sm:h-12 md:w-12 md:h-12 rounded-full flex items-center justify-center" style={{ background: '#464196' }}>
           <span className="text-white text-sm sm:text-base md:text-xl">✦</span>
         </div> */}
-       <div className="text-sm sm:text-base md:text-lg font-black">
+       <div className="flex items-center gap-3 sm:gap-4">
   {/* <Image
     src="/groovory-logo.png"   // public folder me image rakho
     alt="Groovory Fest 2025"
@@ -18,12 +35,23 @@ export default function Header() {
     priority
   /> */}
 
-   <div className="text-sm md:text-base lg:text-lg font-black" style={{ color: '#464196' }}>
-            <div>GROOVORY</div>
-            <div>FEST 2025</div>
+   <img 
+            src="/blueberrie01.png" 
+            alt="Blueberrie" 
+            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain"
+          />
+          <div className="text-lg sm:text-xl md:text-2xl font-black" style={{ color: '#464196' }}>
+            {getPageName()}
           </div>
 </div>
       </div>
+      
+      {/* Right side image */}
+      <img 
+        src="/blueberrie03.png" 
+        alt="Blueberrie" 
+        className="w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 object-contain"
+      />
       
       {/* <button 
         className="px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-full font-bold text-xs sm:text-sm border-2 transition-all hover:bg-opacity-90 bg-white"

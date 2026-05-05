@@ -249,31 +249,6 @@ export default function Marketing() {
           background: white;
         }
 
-        /* Soft blob shapes in background */
-        .testimonials-section::before {
-          content: '';
-          position: absolute;
-          top: -60px;
-          left: -80px;
-          width: 320px;
-          height: 320px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(200,170,240,0.5) 0%, transparent 70%);
-          pointer-events: none;
-        }
-
-        .testimonials-section::after {
-          content: '';
-          position: absolute;
-          bottom: -60px;
-          right: -60px;
-          width: 280px;
-          height: 280px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(240,180,210,0.5) 0%, transparent 70%);
-          pointer-events: none;
-        }
-
         .slider-wrapper {
           width: 100%;
           display: flex;
@@ -504,13 +479,11 @@ export default function Marketing() {
         <nav className="relative z-10 sticky top-0 flex items-center justify-between px-6 md:px-12 py-4 backdrop-blur-sm">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: '#464196' }}>
-              <div className="text-white font-black text-sm">✦</div>
-            </div>
-            <div className="text-sm md:text-base lg:text-lg font-black" style={{ color: '#464196' }}>
-              <div>GROOVORY</div>
-              <div>FEST 2025</div>
-            </div>
+            <img 
+              src="/blueberrie01.png" 
+              alt="Blueberrie" 
+              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
+            />
           </div>
 
           {/* Center Links - Desktop Only */}
@@ -519,7 +492,7 @@ export default function Marketing() {
               <a
                 key={item}
                 href="#"
-                className="text-[#464196] hover:text-[#09094C] transition-colors text-sm font-black"
+                className="text-[#464196] hover:text-[#09094C] transition-colors text-sm"
               >
                 {item}
               </a>
@@ -546,7 +519,7 @@ export default function Marketing() {
                   <a
                     key={item}
                     href="#"
-                    className="text-[#464196] hover:text-[#09094C] transition-colors text-sm font-black px-6 py-3"
+                    className="text-[#464196] hover:text-[#09094C] transition-colors text-sm px-6 py-3"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item}
@@ -566,9 +539,9 @@ export default function Marketing() {
           {/* Main Heading */}
           <div className="text-center max-w-4xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#464196] mb-6 leading-tight">
-              FIND OUT
-              <span className="block">WHAT&apos;S ON</span>
-              <span className="block">AND WHEN</span>
+              BUILD THE RIGHT
+              <span className="block">REVENUE DRIVERS</span>
+              <span className="block">WITH BLUEBERRIE</span>
             </h1>
 
             {/* Description */}
@@ -613,7 +586,7 @@ export default function Marketing() {
             {/* Section Badge */}
             <div className="flex items-center gap-2 mb-8">
               <div className="w-2 h-2 bg-[#464196] rounded-full" />
-              <p className="text-[#464196] font-semibold text-sm">Our Purpose</p>
+              <p className="text-[#464196] font-semibold text-3xl">Our Purpose</p>
             </div>
 
             {/* Main Content - Left Right Layout */}
@@ -623,7 +596,7 @@ export default function Marketing() {
 
               {/* Right Side - Description */}
               <div>
-                <p className="text-base md:text-xl text-gray-600 leading-relaxed">
+                <p className="text-base md:text-xl leading-relaxed" style={{ color: '#09094C' }}>
                   Drive predictable revenue with strategic sales architecture, not random marketing activity. At BlueBerrie, we design, build, and operationalize complete revenue engines — from go-to-market strategy to sales team execution. Whether you are launching a new company or scaling an existing one, we ensure your sales and marketing ecosystem works as one integrated growth machine.
                 </p>
               </div>
@@ -646,7 +619,7 @@ export default function Marketing() {
           <div className="services-section max-w-5xl mx-auto px-6 md:px-10">
             {/* Section Header */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl font-bold text-[#09094C] mb-4">
                 Our Solutions
               </h2>
               {/* <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -666,22 +639,22 @@ export default function Marketing() {
                     onClick={() => handleServiceClick(idx + 1)}
                   >
                     {/* Arrow top-right */}
-                    <div className="arrow-icon absolute top-8 right-0 text-gray-500">
+                    <div className="arrow-icon absolute top-8 right-0" style={{ color: '#09094C' }}>
                       <ArrowIcon />
                     </div>
 
                     {/* Icon */}
-                    <div className="icon-wrap text-gray-800 mb-6">
+                    <div className="icon-wrap text-[#09094C] mb-6">
                       {service.icon}
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 leading-snug">
+                    <h3 className="text-xl font-bold text-[#09094C] mb-3 leading-snug">
                       {service.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-gray-500 text-sm leading-relaxed">
+                    <p className="text-sm leading-relaxed" style={{ color: '#09094C' }}>
                       {service.description}
                     </p>
                   </div>
@@ -783,7 +756,7 @@ export default function Marketing() {
                   <h3 className="text-xl font-bold text-[#1e264f]">{step.title}</h3>
                   {/* <span className="text-gray-400 text-sm">{step.duration}</span> */}
                 </div>
-                <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                <p className="leading-relaxed text-sm md:text-base" style={{ color: '#09094C' }}>
                   {step.description}
                 </p>
               </div>
@@ -860,18 +833,18 @@ export default function Marketing() {
         </section>
 
 
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
 
-          {/* Background Layer - Section Only */}
-          <div className="absolute inset-0 z-0">
-            {/* Gradient Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#4a4fcf] to-[#3e43be]" />
+        {/* Background Layer - Section Only */}
+        <div className="absolute inset-0 z-0">
+          {/* Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-br" />
 
             {/* Your Dotted World Map Image */}
             <img
               src="/world.png"
               alt="World Map"
-              className="absolute inset-0 w-full h-full object-contain opacity-40 mix-blend-screen"
+            className="absolute inset-0 w-full h-full object-contain opacity-40 mix-blend-screen"
             />
 
             {/* Center Glow Overlay (Optional: creates that professional look) */}
@@ -880,17 +853,17 @@ export default function Marketing() {
 
           {/* Content Layer (This will scroll over the fixed background) */}
           <div className="relative z-10 w-full mx-auto px-6 text-center">
-            <h2 className="text-5xl md:text-8xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-5xl md:text-8xl font-bold text-[#09094C] mb-6 tracking-tight">
               Boost your <br />
               <span className="opacity-100">Business with BlueBerrie</span>
             </h2>
 
-            <p className="text-lg md:text-xl text-white/80 mb-10 font-bold  max-w-2xl mx-auto leading-relaxed ">
+          <p className="text-lg md:text-xl text-[#09094C]/80 mb-10 font-bold  max-w-2xl mx-auto leading-relaxed ">
               Ready to build a revenue engine that actually delivers? Connect with BlueBerrie for a strategic consultation and discover how we can design, <br className="hidden md:block" />
                operate, and scale your sales ecosystem.
             </p>
 
-            <button className="px-10 py-4 bg-white text-[#3e43be] font-bold rounded-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+          <button className="px-10 py-4 bg-white text-[#09094C] font-bold rounded-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
               CTA
             </button>
           </div>

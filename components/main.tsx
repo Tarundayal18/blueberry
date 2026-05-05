@@ -86,16 +86,14 @@ export default function Main() {
       {/* Desktop & Tablet Layout */}
 
       {/* Navigation */}
-      <nav className="relative z-10 sticky top-0 flex items-center justify-between px-6 md:px-12 py-4 backdrop-blur-sm">
+      <nav className="relative z-10 flex items-center justify-between px-6 md:px-12 py-4 backdrop-blur-sm">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: '#464196' }}>
-            <div className="text-white font-black text-sm">✦</div>
-          </div>
-          <div className="text-sm md:text-base lg:text-lg font-black" style={{ color: '#464196' }}>
-            <div>GROOVORY</div>
-            <div>FEST 2025</div>
-          </div>
+          <img 
+            src="/blueberrie01.png" 
+            alt="Blueberrie" 
+            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
+          />
         </div>
 
         {/* Center Links - Desktop Only */}
@@ -104,7 +102,7 @@ export default function Main() {
             <a
               key={item}
               href="#"
-              className="text-[#464196] hover:text-[#09094C] transition-colors text-sm font-black"
+              className="text-[#464196] hover:text-[#09094C] transition-colors text-sm"
             >
               {item}
             </a>
@@ -131,7 +129,7 @@ export default function Main() {
                 <a
                   key={item}
                   href="#"
-                  className="text-[#464196] hover:text-[#09094C] transition-colors text-sm font-black px-6 py-3"
+                  className="text-[#464196] hover:text-[#09094C] transition-colors text-sm px-6 py-3"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item}
@@ -152,7 +150,7 @@ export default function Main() {
         <section className="flex flex-col justify-center px-8 lg:px-16 py-16 lg:py-0 ">
           <div className="max-w-2xl">
             {/* Heading */}
-            <h1 className="text-5xl lg:text-6xl font-bold text-black leading-tight mb-6 tracking-tight" style={{ color: '#09094C' }}>
+            <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight" style={{ color: '#09094C' }}>
               {currentData.hero.title}
             </h1>
 
@@ -168,10 +166,11 @@ export default function Main() {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-6 py-4 bg-white rounded-full text-black placeholder-[#464196] border-0 focus:outline-none focus:ring-2 focus:ring-[#464196] shadow-sm"
+                className="flex-1 px-6 py-4 bg-white rounded-full placeholder-[#464196] border-0 focus:outline-none focus:ring-2 focus:ring-[#464196] shadow-sm"
               />
               <button className="px-8 py-4 font-semibold rounded-full transition-colors shadow-md" style={{ background: '#464196', color: 'white' }}>
-                {currentData.hero.buttonText}
+                {/* {currentData.hero.buttonText} */}
+                Get Notifications
               </button>
             </div>
           </div>
@@ -196,7 +195,7 @@ export default function Main() {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="absolute top-12 lg:top-20 right-6 lg:right-12 bg-white rounded-full px-6 py-3 shadow-lg flex items-center gap-3 z-10"
             >
-              <span className="text-sm font-semibold text-black">Mobile accessibility</span>
+              <span className="text-sm font-semibold" style={{ color: '#09094C' }}>Mobile accessibility</span>
               <div className="rounded-full p-2 flex-shrink-0" style={{ background: '#464196' }}>
                 <Plus className="w-4 h-4 text-white" strokeWidth={3} />
               </div>
@@ -209,7 +208,7 @@ export default function Main() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="absolute right-6 lg:right-12 top-1/2 transform -translate-y-1/2 bg-white rounded-full px-6 py-3 shadow-lg flex items-center gap-3 z-10"
             >
-              <span className="text-sm font-semibold text-black">Enhanced security</span>
+              <span className="text-sm font-semibold" style={{ color: '#09094C' }}>Enhanced security</span>
               <div className="rounded-full p-2 flex-shrink-0" style={{ background: '#464196' }}>
                 <Plus className="w-4 h-4 text-white" strokeWidth={3} />
               </div>
@@ -223,7 +222,7 @@ export default function Main() {
               className="absolute bottom-12 lg:bottom-20 left-6 lg:left-12 bg-white rounded-2xl p-6 shadow-lg z-10 w-56"
             >
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-black font-semibold">Expenses</h3>
+                <h3 className="font-semibold" style={{ color: '#09094C' }}>Expenses</h3>
                 <select className="text-xs text-[#464196] bg-transparent border-0 focus:outline-none cursor-pointer">
                   <option>Monthly</option>
                 </select>
@@ -260,7 +259,7 @@ export default function Main() {
 
           {/* Mobile Accessibility Badge */}
           <div className="absolute top-4 right-4 bg-white rounded-full px-4 py-2 shadow-lg flex items-center gap-2 z-10">
-            <span className="text-xs font-semibold text-black">Mobile accessibility</span>
+            <span className="text-xs font-semibold" style={{ color: '#09094C' }}>Mobile accessibility</span>
             <div className="rounded-full p-1.5 flex-shrink-0" style={{ background: '#464196' }}>
               <Plus className="w-3 h-3 text-white" strokeWidth={3} />
             </div>
@@ -285,7 +284,7 @@ export default function Main() {
           <div className="space-y-4 mb-8">
             {/* Enhanced Security Badge */}
             <div className="bg-white rounded-full px-4 py-2 shadow-md flex items-center gap-2 w-fit">
-              <span className="text-xs font-semibold text-black">Enhanced security</span>
+              <span className="text-xs font-semibold" style={{ color: '#09094C' }}>Enhanced security</span>
               <div className="rounded-full p-1.5 flex-shrink-0" style={{ background: '#464196' }}>
                 <Plus className="w-3 h-3 text-white" strokeWidth={3} />
               </div>
@@ -294,7 +293,7 @@ export default function Main() {
             {/* Expenses Card - Mobile */}
             <div className="bg-white rounded-xl p-4 shadow-md">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-black font-semibold text-sm">Expenses</h3>
+                <h3 className="font-semibold text-sm" style={{ color: '#09094C' }}>Expenses</h3>
                 <select className="text-xs text-[#464196] bg-transparent border-0 focus:outline-none cursor-pointer">
                   <option>Monthly</option>
                 </select>
@@ -318,7 +317,7 @@ export default function Main() {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 bg-white rounded-full text-black placeholder-[#464196] border-0 focus:outline-none focus:ring-2 focus:ring-[#464196] text-sm shadow-sm"
+              className="w-full px-4 py-3 bg-white rounded-full placeholder-[#464196] border-0 focus:outline-none focus:ring-2 focus:ring-[#464196] text-sm shadow-sm"
             />
             <button className="w-full px-4 py-3 font-semibold rounded-full transition-colors text-sm shadow-md" style={{ background: '#464196', color: 'white' }}>
               Get start for free
@@ -418,7 +417,7 @@ export default function Main() {
           {/* Section Badge */}
           <div className="flex items-center gap-2 mb-8">
             <div className="w-2 h-2 bg-[#464196] rounded-full" />
-            <p className="text-[#464196] font-semibold text-sm">Our Solution</p>
+            <p className="text-[#464196] font-semibold text-3xl">Our Solution</p>
           </div>
 
           {/* Main Content */}
@@ -431,7 +430,7 @@ export default function Main() {
                   dangerouslySetInnerHTML={{ __html: currentData.purpose.title as string }}
                 />
               ) : null}
-              <p className="text-base md:text-xl text-gray-600 leading-relaxed">
+              <p className="text-base md:text-xl leading-relaxed" style={{ color: '#09094C' }}>
                 {currentData.purpose.description}
               </p>
             </div>
@@ -514,7 +513,7 @@ export default function Main() {
                 </svg>
               </div>
 
-              <h3 className="text-xl lg:text-2xl font-bold text-black mb-3 mt-4">{service.title}</h3>
+              <h3 className="text-xl lg:text-2xl font-bold mb-3 mt-4" style={{ color: '#09094C' }}>{service.title}</h3>
               <p className="text-[#666666] text-sm lg:text-base leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
@@ -542,8 +541,8 @@ export default function Main() {
                     <path d={service.icon} />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-black mb-2">{service.title}</h3>
-                <p className="text-base text-gray-600 leading-relaxed">{service.description}</p>
+                <h3 className="text-lg font-bold mb-2" style={{ color: '#09094C' }}>{service.title}</h3>
+                <p className="text-sm lg:text-base leading-relaxed" style={{ color: '#09094C' }}>{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -559,7 +558,7 @@ export default function Main() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4 text-balance">
               {currentData.keyFeatures.title}
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto text-balance">
+            <p className="text-base sm:text-lg max-w-2xl mx-auto text-balance" style={{ color: '#09094C' }}>
               {currentData.keyFeatures.description}
             </p>
           </div>
@@ -612,7 +611,7 @@ export default function Main() {
                       feature.results?.map((result: any, index: number) => (
                         <div key={index} className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-[#464196] rounded-full mt-2 flex-shrink-0"></div>
-                          <p className="text-base text-gray-700 leading-relaxed">
+                          <p className="text-base text-[#09094C] leading-relaxed">
                             <strong className="text-[#464196]">{result.title}:</strong> {result.description}
                           </p>
                         </div>
