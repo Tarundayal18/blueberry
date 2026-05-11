@@ -156,7 +156,7 @@ export default function HeroSection() {
         </p>
 
         <button
-          onClick={() => window.location.href = '/human'}
+          onClick={() => window.location.href = '/humans'}
           className="mt-8 px-6 py-3 bg-[#464196] hover:bg-[#09094C] text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105"
           >
           Know More

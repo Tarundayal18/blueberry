@@ -1,29 +1,35 @@
 import React from 'react'
 
 interface StatsSectionProps {
-  section?: 'branding' | 'hr-home' | 'food-home' | 'marketing'
+  section?: 'brands' | 'pulse' | 'humans' | 'flavours'
 }
 
-export default function StatsSection({ section = 'marketing' }: StatsSectionProps) {
+export default function StatsSection({ section = 'pulse' }: StatsSectionProps) {
   const getStatsForSection = () => {
     switch(section) {
-      case 'branding':
+      case 'brands':
         return [
           { number: '123', label: 'Brands Created' },
           { number: '91', label: 'Brand Systems Delivered' },
           { number: '6', label: 'Industries Served' }
         ]
-      case 'hr-home':
+      case 'humans':
+        return [
+          { number: '10k+', label: 'Hirings Onboarded' },
+          { number: '15+', label: 'Organizations Operational' },
+          { number: '1L+', label: 'Trainings Delivered' }
+        ]
+      case 'flavours':
+        return [
+          { number: '19+', label: 'Brands Conceptualized' },
+          { number: '6', label: 'Outlets Operational' },
+          { number: '15+', label: 'Menus Curated' }
+        ]
+      case 'pulse':
         return [
           { number: '24', label: 'Setups Build' },
           { number: '15', label: 'Growth Engines Delivered' },
           { number: '6', label: 'Industries Served' }
-        ]
-      case 'food-home':
-        return [
-          { number: '12', label: 'LIVE SHOWS' },
-          { number: '13', label: 'FOOD EVENTS' },
-          { number: '10', label: 'WORKSHOPS' }
         ]
       default:
         return [

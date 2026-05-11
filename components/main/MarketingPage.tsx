@@ -2,7 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { QuoteModal } from '../QuoteModal'
 
 
 
@@ -10,93 +11,57 @@ const clients = [
   {
     name: "Great Product, No Sales System",
     duration: "Founders build strong products but lack a structured revenue engine to sell consistently.",
-    service: "360° marketing",
-    logoFull: (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-        <div style={{ position: "relative", width: 64, height: 32 }}>
-          <div style={{
-            position: "absolute", left: 0, top: 0,
-            width: 32, height: 32, borderRadius: "50%",
-            border: "2px solid #09094c", background: "transparent"
-          }} />
-          <div style={{
-            position: "absolute", left: 18, top: 0,
-            width: 32, height: 32, borderRadius: "50%",
-            border: "2px solid #09094c", background: "white"
-          }} />
-        </div>
-        <span style={{ fontSize: 9, letterSpacing: "0.15em", fontFamily: "Georgia, serif", color: "#09094c", fontWeight: 600 }}>ARTISTAGTY</span>
-      </div>
-    )
   },
   {
     name: "Unclear Go-To-Market Direction",
     duration: "Businesses enter markets without validated positioning, segments, or pricing strategy.",
-    service: "Web Design",
-    logoFull: (
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-        <circle cx="26" cy="14" r="6" stroke="#09094c" strokeWidth="1.8" fill="none" />
-        <circle cx="14" cy="34" r="6" stroke="#09094c" strokeWidth="1.8" fill="none" />
-        <circle cx="38" cy="34" r="6" stroke="#09094c" strokeWidth="1.8" fill="none" />
-        <circle cx="26" cy="26" r="3" stroke="#09094c" strokeWidth="1.5" fill="none" />
-        <line x1="26" y1="20" x2="26" y2="23" stroke="#09094c" strokeWidth="1.5" />
-        <line x1="19" y1="30" x2="23" y2="28" stroke="#09094c" strokeWidth="1.5" />
-        <line x1="33" y1="30" x2="29" y2="28" stroke="#09094c" strokeWidth="1.5" />
-      </svg>
-    )
   },
   {
     name: "Sales Execution Gaps",
     duration: "Hiring sales teams without process, training, and measurement leads to inconsistent results.",
-    service: "360° marketing",
-    logoFull: (
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <svg width="36" height="40" viewBox="0 0 36 40" fill="none">
-          <path d="M6 36 Q9 10 18 8 Q27 10 30 36" stroke="#09094c" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-          <path d="M16 34 Q13 20 20 14" stroke="#09094c" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-          <ellipse cx="18" cy="36" rx="12" ry="3" stroke="#09094c" strokeWidth="1.5" fill="none" />
-        </svg>
-        <div>
-          <div style={{ fontSize: 17, fontWeight: 700, color: "#09094c", lineHeight: 1.15, fontFamily: "Georgia, serif" }}>coffee</div>
-          <div style={{ fontSize: 17, fontWeight: 700, color: "#09094c", lineHeight: 1.15, fontFamily: "Georgia, serif" }}>bloom</div>
-        </div>
-      </div>
-    )
   },
   {
     name: "Marketing Without Revenue Impact",
     duration: "Campaigns generate visibility but fail to convert into qualified pipeline.",
-    service: "Web Optimization",
-    logoFull: (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
-        <div style={{ display: "flex", gap: 5, marginBottom: 3 }}>
-          {[...Array(5)].map((_, i) => (
-            <div key={i} style={{ width: 4, height: 4, borderRadius: "50%", background: "#09094c" }} />
-          ))}
-        </div>
-        <div style={{
-          fontSize: 22, fontWeight: 800, color: "#09094c",
-          fontFamily: "Georgia, serif", letterSpacing: "0.04em",
-          fontStyle: "italic", borderBottom: "2px solid #09094c", paddingBottom: 1
-        }}>MINIMAL</div>
-        <div style={{ fontSize: 7, letterSpacing: "0.35em", color: "#09094c", fontFamily: "sans-serif" }}>RESTAURANT</div>
-      </div>
-    )
+  },
+  {
+    name: "Founder-Led Sales, No Handoff Plan ",
+    duration: "Revenue depends entirely on the founder closing deals — with no process, playbook, or team capable of replicating results.",
+  },
+  {
+    name: "CRM Without a Sales Process ",
+    duration: "Tools are set up but leads go cold, follow-ups are missed, and no one owns the pipeline — because the workflow beneath the tool was never defined.",
+  },
+  {
+    name: "SLeads Generated, But Not Converted",
+    duration: "Marketing brings in inquiries, but without qualifying criteria, nurture flows, or sales scripts, most leads die in the inbox.",
+  },
+  {
+    name: "Pricing Built on Guesswork",
+    duration: "Products are priced on gut feel or competitor copy — without segment-specific value mapping or willingness-to-pay research — leaving margin and positioning on the table.",
   }
 ];
 
 export default function Marketing() {
 
   const router = useRouter();
+  const pathname = usePathname();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [direction, setDirection] = useState(0); // -1 left, 1 right
   const [hovered, setHovered] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   const handleServiceClick = (serviceNumber: number) => {
-    console.log(`Service ${serviceNumber} clicked - redirecting to submain`);
-    router.push(`/submain?solution=${serviceNumber}`);
+    const serviceMap: { [key: number]: string } = {
+      1: 'Build_Operate_Transfer_Sales_Engine',
+      2: 'Go_to_Market_Strategy_Sales_Enablement',
+      3: 'Digital_Marketing_Automation'
+    };
+    
+    const serviceName = serviceMap[serviceNumber] || 'Digital_Marketing_Automation';
+    router.push(`/pulse/${serviceName}`);
   };
 
   // Staggered top offsets like in the screenshot (col1 lower, col2 middle, col3 top)
@@ -205,7 +170,7 @@ export default function Marketing() {
     {
       quote:
         "Identify immediate leakage points and improve conversion rates.",
-      role: "Sales Funnel Audi",
+      role: "Sales Funnel Auditsss",
       avatar: "https://randomuser.me/api/portraits/women/44.jpg",
     },
     {
@@ -479,22 +444,36 @@ export default function Marketing() {
         <nav className="relative z-10 sticky top-0 flex items-center justify-between px-6 md:px-12 py-4 backdrop-blur-sm">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <img 
-              src="/blueberrie01.png" 
-              alt="Blueberrie" 
-              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
-            />
+            <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity">
+              <img 
+                src="/blueberrie01.png" 
+                alt="Blueberrie" 
+                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
+              />
+            </a>
           </div>
 
           {/* Center Links - Desktop Only */}
           <div className="hidden md:flex gap-8">
-            {['BRANDING', 'HR HOME PAGE', 'FOOD HOME PAGE', 'MARKETING'].map((item) => (
+            {[
+              { name: 'BRANDS', href: '/brands' },
+              { name: 'HUMANS', href: '/humans' },
+              { name: 'FLAVOURS', href: '/flavours' },
+              { name: 'PULSE', href: '/pulse' }
+            ].map((item) => (
               <a
-                key={item}
-                href="#"
-                className="text-[#464196] hover:text-[#09094C] transition-colors text-sm"
+                key={item.name}
+                href={item.href}
+                className={`text-sm transition-colors relative ${
+                  pathname.includes(item.href) 
+                    ? 'text-[#09094C] font-semibold' 
+                    : 'text-[#464196] hover:text-[#09094C]'
+                }`}
               >
-                {item}
+                {item.name}
+                {pathname.includes(item.href) && (
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#09094C]"></div>
+                )}
               </a>
             ))}
           </div>
@@ -515,14 +494,23 @@ export default function Marketing() {
           {mobileMenuOpen && (
             <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg md:hidden">
               <div className="flex flex-col py-2">
-                {['BRANDING', 'HR HOME PAGE', 'FOOD HOME PAGE', 'MARKETING'].map((item) => (
+                {[
+                  { name: 'BRANDS', href: '/brands' },
+                  { name: 'HUMANS', href: '/humans' },
+                  { name: 'FLAVOURS', href: '/flavours' },
+                  { name: 'PULSE', href: '/pulse' }
+                ].map((item) => (
                   <a
-                    key={item}
-                    href="#"
-                    className="text-[#464196] hover:text-[#09094C] transition-colors text-sm px-6 py-3"
+                    key={item.name}
+                    href={item.href}
+                    className={`px-6 py-3 transition-colors ${
+                      pathname.includes(item.href) 
+                        ? 'text-[#09094C] font-semibold bg-gray-50' 
+                        : 'text-[#464196] hover:text-[#09094C] hover:bg-gray-50'
+                    }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {item}
+                    {item.name}
                   </a>
                 ))}
               </div>
@@ -546,37 +534,32 @@ export default function Marketing() {
 
             {/* Description */}
             <p className="text-base md:text-lg text-[#464196] mb-8 leading-relaxed max-w-2xl mx-auto font-medium">
-              See the schedule and set times.
+              The Right Strategy Drives the Right Revenue Streams. 
             </p>
           </div>
 
-          {/* Featured Video Card */}
-          <div className="relative mt-12 md:mt-16 w-full max-w-2xl px-4">
-            {/* Decorative background blur effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#B9B9FF]/30 to-[#464196]/30 rounded-3xl md:rounded-4xl blur-2xl" />
+          {/* Featured Video Section */}
+          <div className="relative mt-12 md:mt-16 w-full max-w-5xl px-4">
 
-            {/* Glass morphism card */}
-            <div className="relative bg-white/85 backdrop-blur-xl border border-white/70 rounded-3xl md:rounded-4xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow">
-              {/* Video Thumbnail Area */}
-              <div className="w-full aspect-video md:aspect-auto md:h-64 bg-gradient-to-br from-[#B9B9FF] via-white to-[#464196] flex items-center justify-center relative overflow-hidden">
-                {/* Gradient overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#464196]/20 to-transparent" />
+            {/* Video Card */}
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(70,65,150,0.22)]" style={{ background: '#09094C' }}>
 
-                {/* Video content area */}
-                <div className="relative z-10 text-center">
-                  {/* Play button icon */}
-                  <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full mb-4 transition-colors cursor-pointer" style={{ background: '#464196' }}>
-                    <svg className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                    </svg>
-                  </div>
 
-                  <p className="text-[#464196] font-black text-base md:text-lg">Featured Campaign</p>
-                  <p className="text-[#464196]/70 text-xs md:text-xs mt-2">Click to watch our latest digital marketing reel</p>
-                </div>
-              </div>
+              {/* Video */}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full aspect-video object-cover block"
+              >
+                <source src="/video/PULSE - MARKETING.mp4" type="video/mp4" />
+              </video>
 
-              {/* Card Footer */}
+              {/* Vignette overlay */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(9,9,76,0.35)_100%)] pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#09094C]/50 to-transparent pointer-events-none" />
+
             </div>
           </div>
 
@@ -639,7 +622,8 @@ export default function Marketing() {
                     onClick={() => handleServiceClick(idx + 1)}
                   >
                     {/* Arrow top-right */}
-                    <div className="arrow-icon absolute top-8 right-0" style={{ color: '#09094C' }}>
+                    <div className="arrow-icon absolute top-8 right-0 flex items-center gap-2" style={{ color: '#09094C' }}>
+                      <span className="text-sm font-medium">Know More</span>
                       <ArrowIcon />
                     </div>
 
@@ -687,21 +671,10 @@ export default function Marketing() {
                 <div key={idx}>
 
                   {/* Top Info Card */}
-                  <div className="rounded-xl p-5 mb-3" style={{ background: "#f3f4f6", minHeight: 130 }}>
+                  <div className="rounded-xl p-5 mb-3" style={{ background: "#f3f4f6", height: 180 }}>
                     <p className="font-bold text-sm mb-1" style={{ color: "#09094c" }}>{client.name}</p>
-                    <p className="text-xs mb-4" style={{ color: "#6b7280" }}>{client.duration}</p>
-                    {/* <span className="inline-block bg-white rounded-full px-3 py-1 text-xs font-medium border border-gray-200" style={{ color: "#09094c" }}>
-                      {client.service}
-                    </span> */}
+                    <p className="text-xs" style={{ color: "#6b7280" }}>{client.duration}</p>
                   </div>
-
-                  {/* Logo Card */}
-                  <div className="rounded-xl p-5 flex items-center justify-center" style={{ background: "#f3f4f6", height: 140, minHeight: 140 }}>
-                    <div className="bg-white rounded-full flex items-center justify-center w-full  py-5 px-6">
-                      {client.logoFull}
-                    </div>
-                  </div>
-
                 </div>
               ))}
             </div>
@@ -801,10 +774,10 @@ export default function Marketing() {
                     }`}
                 >
                   <div className="author-row">
-                    <p className="author-role">{testimonials[currentSlide].role}</p>
+                   <p className="font-bold text-md text-[#09094C]">{testimonials[currentSlide].role}</p>
                   </div><br/>
                   <p className="quote-text">
-                    &ldquo;{testimonials[currentSlide].quote}&rdquo;
+                    {testimonials[currentSlide].quote}
                   </p>
                   
                 </div>
@@ -854,7 +827,7 @@ export default function Marketing() {
           {/* Content Layer (This will scroll over the fixed background) */}
           <div className="relative z-10 w-full mx-auto px-6 text-center">
           <h2 className="text-5xl md:text-8xl font-bold text-[#09094C] mb-6 tracking-tight">
-              Boost your <br />
+              Market your <br />
               <span className="opacity-100">Business with BlueBerrie</span>
             </h2>
 
@@ -864,7 +837,7 @@ export default function Marketing() {
             </p>
 
           <button className="px-10 py-4 bg-white text-[#09094C] font-bold rounded-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              CTA
+              Let’s Talk
             </button>
           </div>
         </section>

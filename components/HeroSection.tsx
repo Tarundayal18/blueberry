@@ -157,12 +157,12 @@ export default function HeroSection() {
           className="text-base sm:text-lg md:text-xl font-medium"
           style={{ color: '#464196' }}
         >
-          See the schedule and set times.
+          The Right Strategy Drives the Right Revenue Streams. 
         </p>
 
         {/* CTA Button */}
         <button
-          onClick={() => window.location.href = '/marketing'}
+          onClick={() => window.location.href = '/pulse'}
           className="mt-8 px-6 py-3 bg-[#464196] hover:bg-[#09094C] text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105"
         >
           Know More

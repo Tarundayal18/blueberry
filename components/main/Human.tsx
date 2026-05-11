@@ -2,7 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { QuoteModal } from '../QuoteModal'
 
 
 
@@ -10,93 +11,65 @@ const clients = [
   {
     name: "Talent Shortage",
     duration: "It’s hard to find candidates with the right skills and fit.",
-    service: "360° marketing",
-    logoFull: (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-        <div style={{ position: "relative", width: 64, height: 32 }}>
-          <div style={{
-            position: "absolute", left: 0, top: 0,
-            width: 32, height: 32, borderRadius: "50%",
-            border: "2px solid #09094c", background: "transparent"
-          }} />
-          <div style={{
-            position: "absolute", left: 18, top: 0,
-            width: 32, height: 32, borderRadius: "50%",
-            border: "2px solid #09094c", background: "white"
-          }} />
-        </div>
-        <span style={{ fontSize: 9, letterSpacing: "0.15em", fontFamily: "Georgia, serif", color: "#09094c", fontWeight: 600 }}>ARTISTAGTY</span>
-      </div>
-    )
+    
   },
   {
     name: "Low Engagement",
     duration: "Disengaged workers hurt productivity and morale.",
-    service: "Web Design",
-    logoFull: (
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-        <circle cx="26" cy="14" r="6" stroke="#09094c" strokeWidth="1.8" fill="none" />
-        <circle cx="14" cy="34" r="6" stroke="#09094c" strokeWidth="1.8" fill="none" />
-        <circle cx="38" cy="34" r="6" stroke="#09094c" strokeWidth="1.8" fill="none" />
-        <circle cx="26" cy="26" r="3" stroke="#09094c" strokeWidth="1.5" fill="none" />
-        <line x1="26" y1="20" x2="26" y2="23" stroke="#09094c" strokeWidth="1.5" />
-        <line x1="19" y1="30" x2="23" y2="28" stroke="#09094c" strokeWidth="1.5" />
-        <line x1="33" y1="30" x2="29" y2="28" stroke="#09094c" strokeWidth="1.5" />
-      </svg>
-    )
+   
   },
   {
     name: "Compliance Risks",
     duration: "Manual HR processes lead to errors in payroll, benefits, and regulations.",
-    service: "360° marketing",
-    logoFull: (
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <svg width="36" height="40" viewBox="0 0 36 40" fill="none">
-          <path d="M6 36 Q9 10 18 8 Q27 10 30 36" stroke="#09094c" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-          <path d="M16 34 Q13 20 20 14" stroke="#09094c" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-          <ellipse cx="18" cy="36" rx="12" ry="3" stroke="#09094c" strokeWidth="1.5" fill="none" />
-        </svg>
-        <div>
-          <div style={{ fontSize: 17, fontWeight: 700, color: "#09094c", lineHeight: 1.15, fontFamily: "Georgia, serif" }}>coffee</div>
-          <div style={{ fontSize: 17, fontWeight: 700, color: "#09094c", lineHeight: 1.15, fontFamily: "Georgia, serif" }}>bloom</div>
-        </div>
-      </div>
-    )
+   
   },
   {
     name: "Inconsistent Policies",
     duration: "Lack of clear HR policies (e.g., leave, POSH compliance) creates confusion.",
-    service: "Web Optimization",
-    logoFull: (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
-        <div style={{ display: "flex", gap: 5, marginBottom: 3 }}>
-          {[...Array(5)].map((_, i) => (
-            <div key={i} style={{ width: 4, height: 4, borderRadius: "50%", background: "#09094c" }} />
-          ))}
-        </div>
-        <div style={{
-          fontSize: 22, fontWeight: 800, color: "#09094c",
-          fontFamily: "Georgia, serif", letterSpacing: "0.04em",
-          fontStyle: "italic", borderBottom: "2px solid #09094c", paddingBottom: 1
-        }}>MINIMAL</div>
-        <div style={{ fontSize: 7, letterSpacing: "0.35em", color: "#09094c", fontFamily: "sans-serif" }}>RESTAURANT</div>
-      </div>
-    )
+  
+  },
+   {
+    name: "High Attrition, Low Retention",
+    duration: "New hires leave within months — draining recruitment budgets and institutional knowledge with every exit.",
+    
+  },
+  {
+    name: "No Structured Onboarding",
+    duration: "New employees are thrown into roles without clear orientation, causing slow ramp-up, early disengagement, and avoidable mistakes.",
+   
+  },
+  {
+    name: "Scaling Without an HR Framework",
+    duration: "Growing companies add headcount rapidly but without documented roles, grade structures, or performance review systems — creating chaos at scale.",
+   
+  },
+  {
+    name: "Training That Doesn't Stick",
+    duration: "One-time workshops and generic e-learning fail to change behaviour or build the skills the business actually needs to grow.",
+  
   }
 ];
 
 export default function Human() {
 
   const router = useRouter();
+  const pathname = usePathname();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [direction, setDirection] = useState(0); // -1 left, 1 right
   const [hovered, setHovered] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   const handleServiceClick = (serviceNumber: number) => {
-    console.log(`Human service ${serviceNumber} clicked - redirecting to submain`);
-    router.push(`/submain?solution=${serviceNumber}`);
+    const serviceMap: { [key: number]: string } = {
+      1: 'Talent-Acquisition-Retention',
+      2: 'HR-Operations-Engagement',
+      3: 'Training_and_Culture',
+    };
+    
+    const serviceName = serviceMap[serviceNumber];
+    router.push(`/humans/${serviceName}`);
   };
 
   const conClick = (idx: number) => () => handleServiceClick(idx + 6);
@@ -146,7 +119,7 @@ export default function Human() {
 
   const services = [
     {
-      title: "Recruitment & Onboarding",
+      title: "Talent Acquisition & Retention",
       description:
         "We design a targeted hiring strategy and smooth onboarding to attract and retain talent from day one",
       icon: (
@@ -160,7 +133,7 @@ export default function Human() {
       ),
     },
     {
-      title: "HR Operations (HRaaS)",
+      title: "HR Operations & Engagement",
       description:
         "We offer outsourced HR services for payroll, compliance, and admin tasks to streamline your operations.",
       icon: (
@@ -174,7 +147,7 @@ export default function Human() {
         </svg>
       ),
     },
-    {
+     {
       title: "Training & Culture",
       description:
         "We develop training programs and engagement initiatives to build a positive, high-performance workplace.",
@@ -480,23 +453,36 @@ export default function Human() {
         <nav className="relative z-10 sticky top-0 flex items-center justify-between px-6 md:px-12 py-4 backdrop-blur-sm">
           {/* Logo */}
           <div className="flex items-center gap-2">
-           
-            <img 
-              src="/blueberrie01.png" 
-              alt="Blueberrie" 
-              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
-            />
+            <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity">
+              <img 
+                src="/blueberrie01.png" 
+                alt="Blueberrie" 
+                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
+              />
+            </a>
           </div>
 
           {/* Center Links */}
           <div className="hidden md:flex gap-8">
-            {['BRANDING', 'HR HOME PAGE', 'FOOD HOME PAGE', 'MARKETING'].map((item) => (
+            {[
+              { name: 'BRANDS', href: '/brands' },
+              { name: 'HUMANS', href: '/humans' },
+              { name: 'FLAVOURS', href: '/flavours' },
+              { name: 'PULSE', href: '/pulse' }
+            ].map((item) => (
               <a
-                key={item}
-                href="#"
-                className="text-[#464196] hover:text-[#09094C] transition-colors text-sm"
+                key={item.name}
+                href={item.href}
+                className={`text-sm transition-colors relative ${
+                  pathname.includes(item.href) 
+                    ? 'text-[#09094C] font-semibold' 
+                    : 'text-[#464196] hover:text-[#09094C]'
+                }`}
               >
-                {item}
+                {item.name}
+                {pathname.includes(item.href) && (
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#09094C]"></div>
+                )}
               </a>
             ))}
           </div>
@@ -517,14 +503,23 @@ export default function Human() {
           {mobileMenuOpen && (
             <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg md:hidden">
               <div className="flex flex-col py-2">
-                {['BRANDING', 'HR HOME PAGE', 'FOOD HOME PAGE', 'MARKETING'].map((item) => (
+                {[
+                  { name: 'BRANDS', href: '/brands' },
+                  { name: 'HUMANS', href: '/humans' },
+                  { name: 'FLAVOURS', href: '/flavours' },
+                  { name: 'PULSE', href: '/pulse' }
+                ].map((item) => (
                   <a
-                    key={item}
-                    href="#"
-                    className="text-[#464196] hover:text-[#09094C] transition-colors text-sm px-6 py-3"
+                    key={item.name}
+                    href={item.href}
+                    className={`px-6 py-3 transition-colors ${
+                      pathname.includes(item.href) 
+                        ? 'text-[#09094C] font-semibold bg-gray-50' 
+                        : 'text-[#464196] hover:text-[#09094C] hover:bg-gray-50'
+                    }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {item}
+                    {item.name}
                   </a>
                 ))}
               </div>
@@ -541,44 +536,39 @@ export default function Human() {
           {/* Main Heading */}
           <div className="text-center max-w-4xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#464196] mb-6 leading-tight">
-              FIND OUT
-              <span className="block">WHAT&apos;S ON</span>
-              <span className="block">AND WHEN</span>
+              MANAGE YOUR
+              <span className="block">TEAM WITH</span>
+              <span className="block">EXCELLENCE</span>
             </h1>
 
             {/* Description */}
             <p className="text-base md:text-lg text-[#464196] mb-8 leading-relaxed max-w-2xl mx-auto font-medium">
-              See the schedule and set times.
+              Streamline HR processes and empower your team.
             </p>
           </div>
 
-          {/* Featured Video Card */}
-          <div className="relative mt-12 md:mt-16 w-full max-w-2xl px-4">
-            {/* Decorative background blur effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#B9B9FF]/30 to-[#464196]/30 rounded-3xl md:rounded-4xl blur-2xl" />
+         {/* Featured Video Section */}
+          <div className="relative mt-12 md:mt-16 w-full max-w-5xl px-4">
 
-            {/* Glass morphism card */}
-            <div className="relative bg-white/85 backdrop-blur-xl border border-white/70 rounded-3xl md:rounded-4xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow">
-              {/* Video Thumbnail Area */}
-              <div className="w-full aspect-video md:aspect-auto md:h-64 bg-gradient-to-br from-[#B9B9FF] via-white to-[#464196] flex items-center justify-center relative overflow-hidden">
-                {/* Gradient overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#464196]/20 to-transparent" />
+            {/* Video Card */}
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(70,65,150,0.22)]" style={{ background: '#09094C' }}>
 
-                {/* Video content area */}
-                <div className="relative z-10 text-center">
-                  {/* Play button icon */}
-                  <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full mb-4 transition-colors cursor-pointer" style={{ background: '#464196' }}>
-                    <svg className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                    </svg>
-                  </div>
 
-                  <p className="text-[#464196] font-black text-base md:text-lg">Featured Campaign</p>
-                  <p className="text-[#464196]/70 text-xs md:text-xs mt-2">Click to watch our latest digital marketing reel</p>
-                </div>
-              </div>
+              {/* Video */}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full aspect-video object-cover block"
+              >
+                <source src="/video/HR - HUMANS.mp4" type="video/mp4" />
+              </video>
 
-              {/* Card Footer */}
+              {/* Vignette overlay */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(9,9,76,0.35)_100%)] pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#09094C]/50 to-transparent pointer-events-none" />
+
             </div>
           </div>
 
@@ -628,7 +618,7 @@ Empower your workforce with strategic recruitment and HR management solutions. H
                 I offer a comprehensive range of services to help your business succeed online
               </p> */}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-0 items-start">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-0 items-start">
               {services.map((service, idx) => {
                 const col = idx % 3;
                 const offsetClass = offsets[col];
@@ -638,10 +628,11 @@ Empower your workforce with strategic recruitment and HR management solutions. H
                     className={`service-card group relative pt-8 pb-10 border-t border-gray-300 hover:border-gray-800 ${idx >= 3 ? offsetClass + " mt-10" : offsetClass}`}
                     onMouseEnter={() => setHovered(idx)}
                     onMouseLeave={() => setHovered(null)}
-                    onClick={() => handleServiceClick(idx + 6)}
+                    onClick={() => handleServiceClick(idx + 1)}
                   >
                     {/* Arrow top-right */}
-                    <div className="arrow-icon absolute top-8 right-0" style={{ color: '#09094C' }}>
+                    <div className="arrow-icon absolute top-8 right-0 flex items-center gap-2" style={{ color: '#09094C' }}>
+                      <span className="text-sm font-medium">Know More</span>
                       <ArrowIcon />
                     </div>
 
@@ -690,17 +681,10 @@ Empower your workforce with strategic recruitment and HR management solutions. H
                   <div className="rounded-xl p-5 mb-3" style={{ background: "#f3f4f6", minHeight: 130 }}>
                     <p className="font-bold text-sm mb-1" style={{ color: "#09094c" }}>{client.name}</p>
                     <p className="text-xs mb-4" style={{ color: "#6b7280" }}>{client.duration}</p>
-                    {/* <span className="inline-block bg-white rounded-full px-3 py-1 text-xs font-medium border border-gray-200" style={{ color: "#09094c" }}>
-                      {client.service}
-                    </span> */}
+                   
                   </div>
 
-                  {/* Logo Card */}
-                  <div className="rounded-xl p-5 flex items-center justify-center" style={{ background: "#f3f4f6", height: 140, minHeight: 140 }}>
-                    <div className="bg-white rounded-full flex items-center justify-center w-full  py-5 px-6">
-                      {client.logoFull}
-                    </div>
-                  </div>
+             
 
                 </div>
               ))}
@@ -801,10 +785,11 @@ Empower your workforce with strategic recruitment and HR management solutions. H
                     }`}
                 >
                   <div className="author-row">
-                    <p className="author-role">{testimonials[currentSlide].role}</p>
+                   <p className="font-bold text-md text-[#09094C]">{testimonials[currentSlide].role}</p>
+
                   </div><br/>
                   <p className="quote-text">
-                    &ldquo;{testimonials[currentSlide].quote}&rdquo;
+                    {testimonials[currentSlide].quote}
                   </p>
                   
                 </div>
@@ -854,8 +839,8 @@ Empower your workforce with strategic recruitment and HR management solutions. H
           {/* Content Layer (This will scroll over the fixed background) */}
           <div className="relative z-10 w-full mx-auto px-6 text-center">
           <h2 className="text-5xl md:text-8xl font-bold text-[#09094C] mb-6 tracking-tight">
-              Boost your <br />
-              <span className="opacity-100">Business with BlueBerrie</span>
+              Empower your<br />
+              <span className="opacity-100">Workforce with Blueberrie</span>
             </h2>
 
           <p className="text-lg md:text-xl text-[#09094C]/80 mb-10 font-bold  max-w-2xl mx-auto leading-relaxed ">
@@ -863,11 +848,20 @@ Empower your workforce with strategic recruitment and HR management solutions. H
 
             </p>
 
-          <button className="px-10 py-4 bg-white text-[#09094C] font-bold rounded-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              CTA
+          <button 
+              onClick={() => setIsQuoteModalOpen(true)}
+              className="px-10 py-4 bg-white text-[#09094C] font-bold rounded-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            >
+              Let's Talk
             </button>
           </div>
         </section>
+      
+      {/* Quote Modal */}
+      <QuoteModal 
+        isOpen={isQuoteModalOpen} 
+        onClose={() => setIsQuoteModalOpen(false)} 
+      />
       </main>
 
     </div>

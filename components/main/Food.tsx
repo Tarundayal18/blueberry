@@ -2,7 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { QuoteModal } from '../QuoteModal'
 
 
 
@@ -10,93 +11,57 @@ const clients = [
   {
     name: "Low Online Visibility",
     duration: "Customers can’t find you on Google, maps, or review sites.",
-    service: "360° marketing",
-    logoFull: (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-        <div style={{ position: "relative", width: 64, height: 32 }}>
-          <div style={{
-            position: "absolute", left: 0, top: 0,
-            width: 32, height: 32, borderRadius: "50%",
-            border: "2px solid #09094c", background: "transparent"
-          }} />
-          <div style={{
-            position: "absolute", left: 18, top: 0,
-            width: 32, height: 32, borderRadius: "50%",
-            border: "2px solid #09094c", background: "white"
-          }} />
-        </div>
-        <span style={{ fontSize: 9, letterSpacing: "0.15em", fontFamily: "Georgia, serif", color: "#09094c", fontWeight: 600 }}>ARTISTAGTY</span>
-      </div>
-    )
   },
   {
     name: "Outdated Experience",
     duration: "The menu, ambiance, or service feel stale and don’t match customer expectations.",
-    service: "Web Design",
-    logoFull: (
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-        <circle cx="26" cy="14" r="6" stroke="#09094c" strokeWidth="1.8" fill="none" />
-        <circle cx="14" cy="34" r="6" stroke="#09094c" strokeWidth="1.8" fill="none" />
-        <circle cx="38" cy="34" r="6" stroke="#09094c" strokeWidth="1.8" fill="none" />
-        <circle cx="26" cy="26" r="3" stroke="#09094c" strokeWidth="1.5" fill="none" />
-        <line x1="26" y1="20" x2="26" y2="23" stroke="#09094c" strokeWidth="1.5" />
-        <line x1="19" y1="30" x2="23" y2="28" stroke="#09094c" strokeWidth="1.5" />
-        <line x1="33" y1="30" x2="29" y2="28" stroke="#09094c" strokeWidth="1.5" />
-      </svg>
-    )
   },
   {
     name: "Lack of Loyalty",
     duration: "First-time visitors don’t become repeat patrons",
-    service: "360° marketing",
-    logoFull: (
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <svg width="36" height="40" viewBox="0 0 36 40" fill="none">
-          <path d="M6 36 Q9 10 18 8 Q27 10 30 36" stroke="#09094c" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-          <path d="M16 34 Q13 20 20 14" stroke="#09094c" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-          <ellipse cx="18" cy="36" rx="12" ry="3" stroke="#09094c" strokeWidth="1.5" fill="none" />
-        </svg>
-        <div>
-          <div style={{ fontSize: 17, fontWeight: 700, color: "#09094c", lineHeight: 1.15, fontFamily: "Georgia, serif" }}>coffee</div>
-          <div style={{ fontSize: 17, fontWeight: 700, color: "#09094c", lineHeight: 1.15, fontFamily: "Georgia, serif" }}>bloom</div>
-        </div>
-      </div>
-    )
   },
   {
     name: "Ineffective Marketing Spend",
     duration: "Advertising and promotions fail to drive significant sales.",
-    service: "Web Optimization",
-    logoFull: (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
-        <div style={{ display: "flex", gap: 5, marginBottom: 3 }}>
-          {[...Array(5)].map((_, i) => (
-            <div key={i} style={{ width: 4, height: 4, borderRadius: "50%", background: "#09094c" }} />
-          ))}
-        </div>
-        <div style={{
-          fontSize: 22, fontWeight: 800, color: "#09094c",
-          fontFamily: "Georgia, serif", letterSpacing: "0.04em",
-          fontStyle: "italic", borderBottom: "2px solid #09094c", paddingBottom: 1
-        }}>MINIMAL</div>
-        <div style={{ fontSize: 7, letterSpacing: "0.35em", color: "#09094c", fontFamily: "sans-serif" }}>RESTAURANT</div>
-      </div>
-    )
-  }
+  },
+    {
+    name: "No Delivery Strategy",
+    duration: "Restaurants miss revenue by not optimising Zomato, Swiggy listings, ratings, and online order experience.",
+  },
+  {
+    name: "Inconsistent Guest Experience",
+    duration: "Service quality varies by shift or staff — making it impossible to build a reliable brand reputation.",
+  },
+  {
+    name: "Poor Cost Management",
+    duration: "Rising food and labour costs eat into margins with no visibility into where money is actually leaking.",
+  },
+  {
+    name: "Weak Social Presence",
+    duration: "No consistent content, reviews strategy, or community building — leaving the brand invisible online.",
+  },
+   
 ];
 
 export default function Food() {
 
   const router = useRouter();
+  const pathname = usePathname();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [direction, setDirection] = useState(0); // -1 left, 1 right
   const [hovered, setHovered] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   const handleServiceClick = (serviceNumber: number) => {
-    console.log(`Food service ${serviceNumber} clicked - redirecting to submain`);
-    router.push(`/submain?solution=${serviceNumber}`);
+    const serviceMap: { [key: number]: string } = {
+      9: 'Restaurant_Setup_Strategy',
+      8: 'Menu_Experience_Innovation'
+    };
+
+    const serviceName = serviceMap[serviceNumber];
+    router.push(`/flavours/${serviceName}`);
   };
 
   // Staggered top offsets like in the screenshot (col1 lower, col2 middle, col3 top)
@@ -173,22 +138,7 @@ export default function Food() {
         </svg>
       ),
     },
-    // {
-    //   title: "Training & Culture",
-    //   description:
-    //     "We develop training programs and engagement initiatives to build a positive, high-performance workplace.",
-    //   icon: (
-    //     <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-    //       <line x1="26" y1="4" x2="26" y2="12" />
-    //       <line x1="10" y1="12" x2="42" y2="12" />
-    //       <line x1="14" y1="12" x2="14" y2="44" />
-    //       <line x1="38" y1="12" x2="38" y2="44" />
-    //       <line x1="6" y1="44" x2="46" y2="44" />
-    //       <rect x="20" y="28" width="12" height="16" />
-    //       <path d="M10 12 L26 4 L42 12" />
-    //     </svg>
-    //   ),
-    // },
+   
   ];
 
   const ArrowIcon = () => (
@@ -198,7 +148,7 @@ export default function Food() {
     </svg>
   );
 
-  
+
 
 
   const testimonials = [
@@ -223,7 +173,7 @@ export default function Food() {
   ];
 
 
-  
+
 
   return (
     <div>
@@ -479,30 +429,42 @@ export default function Food() {
         <nav className="relative z-10 sticky top-0 flex items-center justify-between px-6 md:px-12 py-4 backdrop-blur-sm">
           {/* Logo */}
           <div className="flex items-center gap-2">
-           
-            <img 
-              src="/blueberrie01.png" 
-              alt="Blueberrie" 
-              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
-            />
+            <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity">
+              <img
+                src="/blueberrie01.png"
+                alt="Blueberrie"
+                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
+              />
+            </a>
           </div>
 
           {/* Center Links */}
           <div className="hidden md:flex gap-8">
-            {['BRANDING', 'HR HOME PAGE', 'FOOD HOME PAGE', 'MARKETING'].map((item) => (
+            {[
+              { name: 'BRANDS', href: '/brands' },
+              { name: 'HUMANS', href: '/humans' },
+              { name: 'FLAVOURS', href: '/flavours' },
+              { name: 'PULSE', href: '/pulse' }
+            ].map((item) => (
               <a
-                key={item}
-                href="#"
-                className="text-[#464196] hover:text-[#09094C] transition-colors text-sm"
+                key={item.name}
+                href={item.href}
+                className={`text-sm transition-colors relative ${pathname.includes(item.href)
+                    ? 'text-[#09094C] font-semibold'
+                    : 'text-[#464196] hover:text-[#09094C]'
+                  }`}
               >
-                {item}
+                {item.name}
+                {pathname.includes(item.href) && (
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#09094C]"></div>
+                )}
               </a>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button 
+            <button
               className="text-[#464196] p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
@@ -516,14 +478,22 @@ export default function Food() {
           {mobileMenuOpen && (
             <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg md:hidden">
               <div className="flex flex-col py-2">
-                {['BRANDING', 'HR HOME PAGE', 'FOOD HOME PAGE', 'MARKETING'].map((item) => (
+                {[
+                  { name: 'BRANDS', href: '/brands' },
+                  { name: 'HUMANS', href: '/humans' },
+                  { name: 'FLAVOURS', href: '/flavours' },
+                  { name: 'PULSE', href: '/pulse' }
+                ].map((item) => (
                   <a
-                    key={item}
-                    href="#"
-                    className="text-[#464196] hover:text-[#09094C] transition-colors text-sm px-6 py-3"
+                    key={item.name}
+                    href={item.href}
+                    className={`px-6 py-3 transition-colors ${pathname.includes(item.href)
+                        ? 'text-[#09094C] font-semibold bg-gray-50'
+                        : 'text-[#464196] hover:text-[#09094C] hover:bg-gray-50'
+                      }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {item}
+                    {item.name}
                   </a>
                 ))}
               </div>
@@ -536,48 +506,43 @@ export default function Food() {
         </nav>
 
         {/* Hero Section */}
-         <div className="relative z-5 flex flex-col items-center justify-center px-4 md:px-8 py-16 md:py-24 min-h-screen">
+        <div className="relative z-5 flex flex-col items-center justify-center px-4 md:px-8 py-16 md:py-24 min-h-screen">
           {/* Main Heading */}
           <div className="text-center max-w-4xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#464196] mb-6 leading-tight">
-              FIND OUT
-              <span className="block">WHAT&apos;S ON</span>
-              <span className="block">AND WHEN</span>
+              DELICIOUS FOOD
+              <span className="block">EXCEPTIONAL</span>
+              <span className="block">SERVICE</span>
             </h1>
 
             {/* Description */}
             <p className="text-base md:text-lg text-[#464196] mb-8 leading-relaxed max-w-2xl mx-auto font-medium">
-              See the schedule and set times.
+              Experience culinary excellence and innovation.
             </p>
           </div>
 
-          {/* Featured Video Card */}
-          <div className="relative mt-12 md:mt-16 w-full max-w-2xl px-4">
-            {/* Decorative background blur effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#B9B9FF]/30 to-[#464196]/30 rounded-3xl md:rounded-4xl blur-2xl" />
+          {/* Featured Video Section */}
+          <div className="relative mt-12 md:mt-16 w-full max-w-5xl px-4">
 
-            {/* Glass morphism card */}
-            <div className="relative bg-white/85 backdrop-blur-xl border border-white/70 rounded-3xl md:rounded-4xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow">
-              {/* Video Thumbnail Area */}
-              <div className="w-full aspect-video md:aspect-auto md:h-64 bg-gradient-to-br from-[#B9B9FF] via-white to-[#464196] flex items-center justify-center relative overflow-hidden">
-                {/* Gradient overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#464196]/20 to-transparent" />
+            {/* Video Card */}
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(70,65,150,0.22)]" style={{ background: '#09094C' }}>
 
-                {/* Video content area */}
-                <div className="relative z-10 text-center">
-                  {/* Play button icon */}
-                  <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full mb-4 transition-colors cursor-pointer" style={{ background: '#464196' }}>
-                    <svg className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                    </svg>
-                  </div>
 
-                  <p className="text-[#464196] font-black text-base md:text-lg">Featured Campaign</p>
-                  <p className="text-[#464196]/70 text-xs md:text-xs mt-2">Click to watch our latest digital marketing reel</p>
-                </div>
-              </div>
+              {/* Video */}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full aspect-video object-cover block"
+              >
+                <source src="/video/FOOD.mp4" type="video/mp4" />
+              </video>
 
-              {/* Card Footer */}
+              {/* Vignette overlay */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(9,9,76,0.35)_100%)] pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#09094C]/50 to-transparent pointer-events-none" />
+
             </div>
           </div>
 
@@ -599,7 +564,7 @@ export default function Food() {
               {/* Right Side - Description */}
               <div>
                 <p className="text-base md:text-xl leading-relaxed" style={{ color: '#09094C' }}>
-Transform your food business with expert marketing and menu development. For restaurants and food brands, getting customers in the door and keeping them coming back is everything. In fact, 98% of consumers use the internet to find local businesses. BlueBerrie ensures your eatery stands out online and delivers a memorable customer experience. </p>
+                  Transform your food business with expert marketing and menu development. For restaurants and food brands, getting customers in the door and keeping them coming back is everything. In fact, 98% of consumers use the internet to find local businesses. BlueBerrie ensures your eatery stands out online and delivers a memorable customer experience. </p>
               </div>
             </div>
 
@@ -640,7 +605,8 @@ Transform your food business with expert marketing and menu development. For res
                     onClick={() => handleServiceClick(idx + 8)}
                   >
                     {/* Arrow top-right */}
-                    <div className="arrow-icon absolute top-8 right-0" style={{ color: '#09094C' }}>
+                    <div className="arrow-icon absolute top-8 right-0 flex items-center gap-2" style={{ color: '#09094C' }}>
+                      <span className="text-sm font-medium">Know More</span>
                       <ArrowIcon />
                     </div>
 
@@ -681,26 +647,15 @@ Transform your food business with expert marketing and menu development. For res
             </div>
 
             {/* Clients Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
               {clients.map((client, idx) => (
                 <div key={idx}>
 
                   {/* Top Info Card */}
-                  <div className="rounded-xl p-5 mb-3" style={{ background: "#f3f4f6", minHeight: 130 }}>
+                  <div className="rounded-xl p-5 mb-3" style={{ background: "#f3f4f6", height: 180 }}>
                     <p className="font-bold text-sm mb-1" style={{ color: "#09094c" }}>{client.name}</p>
-                    <p className="text-xs mb-4" style={{ color: "#6b7280" }}>{client.duration}</p>
-                    {/* <span className="inline-block bg-white rounded-full px-3 py-1 text-xs font-medium border border-gray-200" style={{ color: "#09094c" }}>
-                      {client.service}
-                    </span> */}
+                    <p className="text-xs" style={{ color: "#6b7280" }}>{client.duration}</p>
                   </div>
-
-                  {/* Logo Card */}
-                  <div className="rounded-xl p-5 flex items-center justify-center" style={{ background: "#f3f4f6", height: 140, minHeight: 140 }}>
-                    <div className="bg-white rounded-full flex items-center justify-center w-full  py-5 px-6">
-                      {client.logoFull}
-                    </div>
-                  </div>
-
                 </div>
               ))}
             </div>
@@ -709,68 +664,68 @@ Transform your food business with expert marketing and menu development. For res
         </section>
 
         <section className="bg-white py-16 md:py-24 font-sans">
-      <div className="max-w-6xl mx-auto px-6">
-        
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1e264f] mb-4">
-            Our Approach
-          </h2>
-          {/* <p className="text-lg text-[#464196] font-medium">
+          <div className="max-w-6xl mx-auto px-6">
+
+            {/* Section Header */}
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1e264f] mb-4">
+                Our Approach
+              </h2>
+              {/* <p className="text-lg text-[#464196] font-medium">
             My simple yet powerful workflow to offer you the best results.
           </p> */}
-        </div>
-
-        {/* Process Steps Container */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-          {steps.map((step, idx) => (
-            <div key={idx} className="relative">
-              
-              {/* Number and Arrow Row */}
-              <div className="flex items-center mb-8">
-                <span className="text-5xl md:text-6xl font-bold text-[#3f51b5] mr-4">
-                  {step.number}
-                </span>
-                
-                {/* Horizontal Line with Arrow (Hidden on last step) */}
-                {idx !== steps.length - 1 && (
-                  <div className="hidden md:flex flex-grow items-center ml-2">
-                    <div className="h-[1.5px] w-full bg-[#3f51b5]"></div>
-                    <div className="w-2 h-2 border-t-2 border-r-2 border-[#3f51b5] rotate-45 -ml-2"></div>
-                  </div>
-                )}
-                
-                {/* Extra Arrow for the final step to match image layout if needed */}
-                {idx === steps.length - 1 && (
-                   <div className="hidden md:flex flex-grow items-center ml-2 opacity-100">
-                    <div className="h-[1.5px] w-full bg-[#3f51b5]"></div>
-                    <div className="w-2 h-2 border-t-2 border-r-2 border-[#3f51b5] rotate-45 -ml-2"></div>
-                  </div>
-                )}
-              </div>
-
-              {/* Text Content */}
-              <div className="pr-4">
-                <div className="flex justify-between items-baseline mb-3">
-                  <h3 className="text-xl font-bold text-[#1e264f]">{step.title}</h3>
-                  {/* <span className="text-gray-400 text-sm">{step.duration}</span> */}
-                </div>
-                <p className="leading-relaxed text-sm md:text-base" style={{ color: '#09094C' }}>
-                  {step.description}
-                </p>
-              </div>
             </div>
-          ))}
-        </div>
 
-        {/* CTA Button */}
-        <div className="flex justify-center mt-16">
-          <button className="px-10 py-3.5 bg-[#3f51b5] hover:bg-[#2e3b8a] text-white font-semibold rounded-lg transition-all shadow-md">
-            Schedule intro call
-          </button>
-        </div>
-      </div>
-    </section>
+            {/* Process Steps Container */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+              {steps.map((step, idx) => (
+                <div key={idx} className="relative">
+
+                  {/* Number and Arrow Row */}
+                  <div className="flex items-center mb-8">
+                    <span className="text-5xl md:text-6xl font-bold text-[#3f51b5] mr-4">
+                      {step.number}
+                    </span>
+
+                    {/* Horizontal Line with Arrow (Hidden on last step) */}
+                    {idx !== steps.length - 1 && (
+                      <div className="hidden md:flex flex-grow items-center ml-2">
+                        <div className="h-[1.5px] w-full bg-[#3f51b5]"></div>
+                        <div className="w-2 h-2 border-t-2 border-r-2 border-[#3f51b5] rotate-45 -ml-2"></div>
+                      </div>
+                    )}
+
+                    {/* Extra Arrow for the final step to match image layout if needed */}
+                    {idx === steps.length - 1 && (
+                      <div className="hidden md:flex flex-grow items-center ml-2 opacity-100">
+                        <div className="h-[1.5px] w-full bg-[#3f51b5]"></div>
+                        <div className="w-2 h-2 border-t-2 border-r-2 border-[#3f51b5] rotate-45 -ml-2"></div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="pr-4">
+                    <div className="flex justify-between items-baseline mb-3">
+                      <h3 className="text-xl font-bold text-[#1e264f]">{step.title}</h3>
+                      {/* <span className="text-gray-400 text-sm">{step.duration}</span> */}
+                    </div>
+                    <p className="leading-relaxed text-sm md:text-base" style={{ color: '#09094C' }}>
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="flex justify-center mt-16">
+              <button className="px-10 py-3.5 bg-[#3f51b5] hover:bg-[#2e3b8a] text-white font-semibold rounded-lg transition-all shadow-md">
+                Schedule intro call
+              </button>
+            </div>
+          </div>
+        </section>
 
 
         {/* Testimonials Slider Section */}
@@ -793,19 +748,19 @@ Transform your food business with expert marketing and menu development. For res
                 />
                 <div
                   className={`testimonial-card ${animating
-                      ? direction > 0
-                        ? "card-enter"
-                        : "card-enter-left"
-                      : "card-visible"
+                    ? direction > 0
+                      ? "card-enter"
+                      : "card-enter-left"
+                    : "card-visible"
                     }`}
                 >
                   <div className="author-row">
-                    <p className="author-role">{testimonials[currentSlide].role}</p>
-                  </div><br/>
+                   <p className="font-bold text-md text-[#09094C]">{testimonials[currentSlide].role}</p>
+                  </div><br />
                   <p className="quote-text">
-                    &ldquo;{testimonials[currentSlide].quote}&rdquo;
+                    {testimonials[currentSlide].quote}
                   </p>
-                  
+
                 </div>
               </div>
             </div>
@@ -834,16 +789,16 @@ Transform your food business with expert marketing and menu development. For res
 
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
 
-        {/* Background Layer - Section Only */}
-        <div className="absolute inset-0 z-0">
-          {/* Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-br" />
+          {/* Background Layer - Section Only */}
+          <div className="absolute inset-0 z-0">
+            {/* Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-br" />
 
             {/* Your Dotted World Map Image */}
             <img
               src="/world.png"
               alt="World Map"
-            className="absolute inset-0 w-full h-full object-contain opacity-40 mix-blend-screen"
+              className="absolute inset-0 w-full h-full object-contain opacity-40 mix-blend-screen"
             />
 
             {/* Center Glow Overlay (Optional: creates that professional look) */}
@@ -852,20 +807,29 @@ Transform your food business with expert marketing and menu development. For res
 
           {/* Content Layer (This will scroll over the fixed background) */}
           <div className="relative z-10 w-full mx-auto px-6 text-center">
-          <h2 className="text-5xl md:text-8xl font-bold text-[#09094C] mb-6 tracking-tight">
-              Boost your <br />
-              <span className="opacity-100">Business with BlueBerrie</span>
+            <h2 className="text-5xl md:text-8xl font-bold text-[#09094C] mb-6 tracking-tight">
+              Add Flavours of <br />
+              <span className="opacity-100">Growth to you Food Business with BlueBerrie</span>
             </h2>
 
-          <p className="text-lg md:text-xl text-[#09094C]/80 mb-10 font-bold  max-w-2xl mx-auto leading-relaxed ">
-Hungry for growth? Reach out to BlueBerrie for a consultation. We'll help you cook up a strategy that turns diners into devoted fans.
+            <p className="text-lg md:text-xl text-[#09094C]/80 mb-10 font-bold  max-w-2xl mx-auto leading-relaxed ">
+              Hungry for growth? Reach out to BlueBerrie for a consultation. We'll help you cook up a strategy that turns diners into devoted fans.
             </p>
 
-          <button className="px-10 py-4 bg-white text-[#09094C] font-bold rounded-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              CTA
+            <button 
+              onClick={() => setIsQuoteModalOpen(true)}
+              className="px-10 py-4 bg-white text-[#09094C] font-bold rounded-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            >
+              Let's Talk
             </button>
           </div>
         </section>
+      
+      {/* Quote Modal */}
+      <QuoteModal 
+        isOpen={isQuoteModalOpen} 
+        onClose={() => setIsQuoteModalOpen(false)} 
+      />
       </main>
 
     </div>

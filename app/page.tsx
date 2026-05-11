@@ -10,15 +10,15 @@ import HRHomePage from '@/components/HRHomePage'
 import FoodHomePage from '@/components/FoodHomePage'
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('marketing')
+  const [activeTab, setActiveTab] = useState('brands')
 
   const renderContent = () => {
     switch(activeTab) {
-      case 'branding':
+      case 'brands':
         return <BrandingPage />
-      case 'hr-home':
+      case 'humans':
         return <HRHomePage />
-      case 'food-home':
+      case 'flavours':
         return <FoodHomePage />
       default:
         return <HeroSection />
@@ -27,14 +27,14 @@ export default function Home() {
 
   const renderStats = () => {
     switch(activeTab) {
-      case 'branding':
-        return <StatsSection section="branding" />
-      case 'hr-home':
-        return <StatsSection section="hr-home" />
-      case 'food-home':
-        return <StatsSection section="food-home" />
+      case 'brands':
+        return <StatsSection section="brands" />
+      case 'humans':
+        return <StatsSection section="humans" />
+      case 'flavours':
+        return <StatsSection section="flavours" />
       default:
-        return <StatsSection section="marketing" />
+        return <StatsSection section="pulse" />
     }
   }
 

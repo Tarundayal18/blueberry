@@ -11,10 +11,10 @@ interface RightPanelProps {
 export default function RightPanel({ activeTab, setActiveTab }: RightPanelProps) {
   const getTabContent = () => {
     const tabs = [
-      { id: 'branding', label: 'Brands', color: '#B9B9FF', number: '01' },
-      { id: 'marketing', label: 'Pulse', color: '#09094C', number: '02' },
-      { id: 'hr-home', label: 'Humans', color: '#464196', number: '03' },
-      { id: 'food-home', label: 'Flavours', color: '#09094C', number: '04' }
+      { id: 'brands', label: 'Brands', color: '#B9B9FF', number: '01' },
+      { id: 'pulse', label: 'Pulse', color: '#09094C', number: '02' },
+      { id: 'humans', label: 'Humans', color: '#464196', number: '03' },
+      { id: 'flavours', label: 'Flavours', color: '#09094C', number: '04' }
     ]
     
     return tabs.filter(tab => tab.id !== activeTab)
