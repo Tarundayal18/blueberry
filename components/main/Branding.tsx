@@ -465,9 +465,9 @@ export default function Branding() {
           <div className="hidden md:flex gap-8">
             {[
               { name: 'BRANDS', href: '/brands' },
+              { name: 'PULSE', href: '/pulse' },
               { name: 'HUMANS', href: '/humans' },
-              { name: 'FLAVOURS', href: '/flavours' },
-              { name: 'PULSE', href: '/pulse' }
+              { name: 'FLAVOURS', href: '/flavours' }
             ].map((item) => (
               <a
                 key={item.name}
@@ -503,9 +503,9 @@ export default function Branding() {
               <div className="flex flex-col py-2">
                 {[
                   { name: 'BRANDS', href: '/brands' },
+                  { name: 'PULSE', href: '/pulse' },
                   { name: 'HUMANS', href: '/humans' },
-                  { name: 'FLAVOURS', href: '/flavours' },
-                  { name: 'PULSE', href: '/pulse' }
+                  { name: 'FLAVOURS', href: '/flavours' }
                 ].map((item) => (
                   <a
                     key={item.name}
@@ -841,7 +841,7 @@ export default function Branding() {
             </h2>
 
             <p className="text-lg md:text-xl text-[#09094C]/80 mb-10 font-bold  max-w-2xl mx-auto leading-relaxed ">
-              Ready to elevate your brand? Contact BlueBerrie for a free brand audit. We’ll show you how a strong identity and strategy can make your business unforgettable.
+              Ready to elevate your Brand? Contact BlueBerrie for a free brand audit. We’ll show you how a strong identity and strategy can make your business unforgettable.
             </p>
 
             <button 

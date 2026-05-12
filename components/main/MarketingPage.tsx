@@ -170,7 +170,7 @@ export default function Marketing() {
     {
       quote:
         "Identify immediate leakage points and improve conversion rates.",
-      role: "Sales Funnel Auditsss",
+      role: "Sales Funnel Audits",
       avatar: "https://randomuser.me/api/portraits/women/44.jpg",
     },
     {
@@ -457,9 +457,9 @@ export default function Marketing() {
           <div className="hidden md:flex gap-8">
             {[
               { name: 'BRANDS', href: '/brands' },
+              { name: 'PULSE', href: '/pulse' },
               { name: 'HUMANS', href: '/humans' },
-              { name: 'FLAVOURS', href: '/flavours' },
-              { name: 'PULSE', href: '/pulse' }
+              { name: 'FLAVOURS', href: '/flavours' }
             ].map((item) => (
               <a
                 key={item.name}
@@ -496,9 +496,9 @@ export default function Marketing() {
               <div className="flex flex-col py-2">
                 {[
                   { name: 'BRANDS', href: '/brands' },
+                  { name: 'PULSE', href: '/pulse' },
                   { name: 'HUMANS', href: '/humans' },
-                  { name: 'FLAVOURS', href: '/flavours' },
-                  { name: 'PULSE', href: '/pulse' }
+                  { name: 'FLAVOURS', href: '/flavours' }
                 ].map((item) => (
                   <a
                     key={item.name}

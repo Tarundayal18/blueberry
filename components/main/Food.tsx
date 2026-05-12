@@ -442,9 +442,9 @@ export default function Food() {
           <div className="hidden md:flex gap-8">
             {[
               { name: 'BRANDS', href: '/brands' },
+              { name: 'PULSE', href: '/pulse' },
               { name: 'HUMANS', href: '/humans' },
-              { name: 'FLAVOURS', href: '/flavours' },
-              { name: 'PULSE', href: '/pulse' }
+              { name: 'FLAVOURS', href: '/flavours' }
             ].map((item) => (
               <a
                 key={item.name}
@@ -480,9 +480,9 @@ export default function Food() {
               <div className="flex flex-col py-2">
                 {[
                   { name: 'BRANDS', href: '/brands' },
+                  { name: 'PULSE', href: '/pulse' },
                   { name: 'HUMANS', href: '/humans' },
-                  { name: 'FLAVOURS', href: '/flavours' },
-                  { name: 'PULSE', href: '/pulse' }
+                  { name: 'FLAVOURS', href: '/flavours' }
                 ].map((item) => (
                   <a
                     key={item.name}

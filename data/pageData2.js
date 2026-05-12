@@ -484,7 +484,7 @@ export const pageData4 = {
 
   cta: {
     title: "Your Brands Need BlueBerrie to Breath",
-    description: "Transform your brand’s look and feel. Get in touch with BlueBerrie to start a complete brand makeover that turns heads and drives growth.",
+    description: "Transform your Brand’s look and feel. Get in touch with BlueBerrie to start a complete brand makeover that turns heads and drives growth.",
     buttonText: "Let's Talk",
     backgroundImage: "from-[#4facfe] to-[#00f2fe]"
   }
@@ -1095,7 +1095,7 @@ export const pageData9 = {
 
   cta: {
     title: "Empower your Workforce with Blueberrie",
-    description: "Let’s transform your HR operations. Contact BlueBerrie to implement efficient systems and engagement strategies that keep your team performing at its best.",
+    description: "Training without strategy is just cost. Culture without design is just chance. BlueBerrie helps you build both — deliberately, measurably, and for the long term. ",
     buttonText: "Let’s Talk",
     backgroundImage: "from-[#11998e] to-[#38ef7d]"
   }
