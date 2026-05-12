@@ -536,7 +536,7 @@ export default function Food() {
                 playsInline
                 className="w-full aspect-video object-cover block"
               >
-                <source src="/video/FOOD.mp4" type="video/mp4" />
+                <source src="/video/1/FOOD.mp4" type="video/mp4" />
               </video>
 
               {/* Vignette overlay */}

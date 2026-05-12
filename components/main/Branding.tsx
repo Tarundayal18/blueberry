@@ -559,7 +559,7 @@ export default function Branding() {
                 playsInline
                 className="w-full aspect-video object-cover block"
               >
-                <source src="/video/BRANDING.mp4" type="video/mp4" />
+                <source src="/video/1/BRANDING.mp4" type="video/mp4" />
               </video>
 
               {/* Vignette overlay */}

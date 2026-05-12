@@ -562,7 +562,7 @@ export default function Human() {
                 playsInline
                 className="w-full aspect-video object-cover block"
               >
-                <source src="/video/HR - HUMANS.mp4" type="video/mp4" />
+                <source src="/video/1/HR - HUMANS.mp4" type="video/mp4" />
               </video>
 
               {/* Vignette overlay */}
