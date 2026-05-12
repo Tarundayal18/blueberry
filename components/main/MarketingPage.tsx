@@ -831,19 +831,26 @@ export default function Marketing() {
               <span className="opacity-100">Business with BlueBerrie</span>
             </h2>
 
-          <p className="text-lg md:text-xl text-[#09094C]/80 mb-10 font-bold  max-w-2xl mx-auto leading-relaxed ">
-              Ready to build a revenue engine that actually delivers? Connect with BlueBerrie for a strategic consultation and discover how we can design, <br className="hidden md:block" />
-               operate, and scale your sales ecosystem.
-            </p>
+<p className="text-lg md:text-xl text-[#09094C]/80 mb-10 font-bold  max-w-2xl mx-auto leading-relaxed ">
+Ready to build a revenue engine that actually delivers? Connect with BlueBerrie for a strategic consultation and discover how we can design, <br className="hidden md:block" />
+operate, and scale your sales ecosystem.
+</p>
 
-          <button className="px-10 py-4 bg-white text-[#09094C] font-bold rounded-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              Let’s Talk
-            </button>
-          </div>
-        </section>
-      </main>
+<button 
+onClick={() => setIsQuoteModalOpen(true)}
+className="px-10 py-4 bg-white text-[#09094C] font-bold rounded-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+>
+Let's Talk
+</button>
+</div>
+</section>
+</main>
 
-    </div>
-  )
+<QuoteModal 
+  isOpen={isQuoteModalOpen} 
+  onClose={() => setIsQuoteModalOpen(false)} 
+/>
+</div>
+)
 }
 
