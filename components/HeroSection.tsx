@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 // Inline styles for keyframe animations
 const animationStyles = `
@@ -84,6 +85,7 @@ function CyclingShape({ color, size, initialIndex = 0 }: { color: string; size: 
 }
 
 export default function HeroSection() {
+  const router = useRouter()
   const shapeColor = '#7B00FF'
   const shapeColorLight = '#9B30FF'
 
@@ -162,7 +164,7 @@ export default function HeroSection() {
 
         {/* CTA Button */}
         <button
-          onClick={() => window.location.href = '/pulse'}
+          onClick={() => router.push('/pulse')}
           className="mt-8 px-6 py-3 bg-[#464196] hover:bg-[#09094C] text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105"
         >
           Know More
