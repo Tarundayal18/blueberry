@@ -479,12 +479,12 @@ export const pageData4 = {
 
   purpose: {
     // title: "Our Goal",
-    description: "We revamp your brand’s visuals and narrative end-to-end. This includes redesigning your logo and visual elements, updating your website for mobile-friendly SEO, and creating a unified look across all touchpoints. We also refine your brand messaging so that the new design clearly communicates your values and appeal."
+    description: "We revamp your brands visuals and narrative end-to-end. This includes redesigning your logo and visual elements, updating your website for mobile-friendly SEO, and creating a unified look across all touchpoints. We also refine your brand messaging so that the new design clearly communicates your values and appeal."
   },
 
   cta: {
-    title: "Your Brands Need BlueBerrie to Breath",
-    description: "Transform your Brand’s look and feel. Get in touch with BlueBerrie to start a complete brand makeover that turns heads and drives growth.",
+    title: "Your Brands Need\nBlueBerrie to Breath",
+    description: "Transform your Brands look and feel. Get in touch with BlueBerrie to start a complete brand makeover that turns heads and drives growth.",
     buttonText: "Let's Talk",
     backgroundImage: "from-[#4facfe] to-[#00f2fe]"
   }
@@ -1214,7 +1214,7 @@ export const pageData10 = {
   },
 
   cta: {
-    title: "Add Flavours of Growth to you Food Business with BlueBerrie ",
+    title: "Add Flavours of Growth to your Food Business with BlueBerrie ",
     description: "Plan your restaurant’s success. Contact BlueBerrie to develop a launch and growth strategy that ensures your business thrives in a competitive market.",
     buttonText: "Let’s Talk",
     backgroundImage: "from-[#fc466b] to-[#3f5efb]"
@@ -1334,7 +1334,7 @@ export const pageData11 = {
   },
 
   cta: {
-    title: "Add Flavours of Growth to you Food Business with BlueBerrie",
+    title: "Add Flavours of Growth to your Food Business with BlueBerrie",
     description: "Revamp your menu and dining experience. Schedule a consultation with BlueBerrie to develop a food and brand strategy that keeps customers coming back again and again.",
     buttonText: "Let’s Talk",
     backgroundImage: "from-[#fa709a] to-[#fee140]"

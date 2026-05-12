@@ -578,7 +578,12 @@ export default function Main() {
 
         <div className="relative z-10 w-full mx-auto px-6 text-center">
           <h2 className="text-5xl md:text-8xl font-bold text-[#09094C] mb-6 tracking-tight">
-            {currentData.cta.title}
+            {currentData.cta.title.split('\n').map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                {index < currentData.cta.title.split('\n').length - 1 && <br />}
+              </React.Fragment>
+            ))}
           </h2>
           <p className="text-lg md:text-xl text-[#09094C]/80 mb-10 font-bold max-w-2xl mx-auto leading-relaxed">
             {currentData.cta.description}

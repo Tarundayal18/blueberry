@@ -809,7 +809,7 @@ export default function Food() {
           <div className="relative z-10 w-full mx-auto px-6 text-center">
             <h2 className="text-5xl md:text-8xl font-bold text-[#09094C] mb-6 tracking-tight">
               Add Flavours of <br />
-              <span className="opacity-100">Growth to you Food Business with BlueBerrie</span>
+              <span className="opacity-100">Growth to your Food Business with BlueBerrie</span>
             </h2>
 
             <p className="text-lg md:text-xl text-[#09094C]/80 mb-10 font-bold  max-w-2xl mx-auto leading-relaxed ">
