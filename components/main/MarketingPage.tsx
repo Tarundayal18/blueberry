@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation';
 import { QuoteModal } from '../QuoteModal'
 import { LazyHeroVideo } from './LazyHeroVideo'
@@ -64,16 +64,6 @@ export default function Marketing() {
     const serviceName = serviceMap[serviceNumber] || 'Digital_Marketing_Automation';
     router.push(`/pulse/${serviceName}`);
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      router.prefetch('/pulse/Build_Operate_Transfer_Sales_Engine');
-      router.prefetch('/pulse/Go_to_Market_Strategy_Sales_Enablement');
-      router.prefetch('/pulse/Digital_Marketing_Automation');
-    }, 250);
-
-    return () => clearTimeout(timer);
-  }, [router]);
 
   // Staggered top offsets like in the screenshot (col1 lower, col2 middle, col3 top)
   const offsets = ["mt-16", "mt-8", "mt-0"];

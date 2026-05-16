@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation';
 import { QuoteModal } from '../QuoteModal'
 import { LazyHeroVideo } from './LazyHeroVideo'
@@ -72,16 +72,6 @@ export default function Human() {
     const serviceName = serviceMap[serviceNumber];
     router.push(`/humans/${serviceName}`);
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      router.prefetch('/humans/Talent-Acquisition-Retention');
-      router.prefetch('/humans/HR-Operations-Engagement');
-      router.prefetch('/humans/Training_and_Culture');
-    }, 250);
-
-    return () => clearTimeout(timer);
-  }, [router]);
 
   const conClick = (idx: number) => () => handleServiceClick(idx + 6);
 

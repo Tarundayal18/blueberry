@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation';
 import { QuoteModal } from '../QuoteModal'
 import { LazyHeroVideo } from './LazyHeroVideo'
@@ -64,15 +64,6 @@ export default function Food() {
     const serviceName = serviceMap[serviceNumber];
     router.push(`/flavours/${serviceName}`);
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      router.prefetch('/flavours/Menu_Experience_Innovation');
-      router.prefetch('/flavours/Restaurant_Setup_Strategy');
-    }, 250);
-
-    return () => clearTimeout(timer);
-  }, [router]);
 
   // Staggered top offsets like in the screenshot (col1 lower, col2 middle, col3 top)
   const offsets = ["mt-16", "mt-8", "mt-0"];
