@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 
 interface HeaderProps {
@@ -38,8 +37,10 @@ export default function Header({ activeTab }: HeaderProps) {
   /> */}
 
    <img 
-            src="/blueberrie01.png" 
+            src="/blueberrie01-small.png" 
             alt="Blueberrie" 
+            width={64}
+            height={64}
             className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain"
           />
           <div className="flex flex-col">
@@ -55,8 +56,10 @@ export default function Header({ activeTab }: HeaderProps) {
       
       {/* Right side image */}
       <img 
-        src="/blueberrie03.png" 
+        src="/blueberrie03-small.png" 
         alt="Blueberrie" 
+        width={104}
+        height={104}
         className="w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 object-contain"
       />
       

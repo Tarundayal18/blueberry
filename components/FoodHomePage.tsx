@@ -126,8 +126,10 @@ export default function FoodHomePage() {
       <div className="max-w-4xl mx-auto text-center relative z-10 px-4">
         <div className="mb-3 sm:mb-4">
           <img 
-            src="/blueberrie01.png" 
+            src="/blueberrie01-small.png" 
             alt="Blueberrie" 
+            width={64}
+            height={64}
             className="w-12 h-12 sm:w-16 sm:h-16 mx-auto object-contain"
           />
         </div>

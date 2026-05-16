@@ -1,13 +1,15 @@
 'use client'
 
 import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
-import HeroSection from '@/components/HeroSection'
 import StatsSection from '@/components/StatsSection'
 import RightPanel from '@/components/RightPanel'
-import BrandingPage from '@/components/BrandingPage'
-import HRHomePage from '@/components/HRHomePage'
-import FoodHomePage from '@/components/FoodHomePage'
+
+const HeroSection = dynamic(() => import('@/components/HeroSection'))
+const BrandingPage = dynamic(() => import('@/components/BrandingPage'))
+const HRHomePage = dynamic(() => import('@/components/HRHomePage'))
+const FoodHomePage = dynamic(() => import('@/components/FoodHomePage'))
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('brands')
