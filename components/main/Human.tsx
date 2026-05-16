@@ -1,9 +1,10 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation';
 import { QuoteModal } from '../QuoteModal'
+import { LazyHeroVideo } from './LazyHeroVideo'
 
 
 
@@ -71,6 +72,16 @@ export default function Human() {
     const serviceName = serviceMap[serviceNumber];
     router.push(`/humans/${serviceName}`);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.prefetch('/humans/Talent-Acquisition-Retention');
+      router.prefetch('/humans/HR-Operations-Engagement');
+      router.prefetch('/humans/Training_and_Culture');
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, [router]);
 
   const conClick = (idx: number) => () => handleServiceClick(idx + 6);
 
@@ -554,16 +565,7 @@ export default function Human() {
             <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(70,65,150,0.22)]" style={{ background: '#09094C' }}>
 
 
-              {/* Video */}
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full aspect-video object-cover block"
-              >
-                <source src="/video/1/HR - HUMANS.mp4" type="video/mp4" />
-              </video>
+              <LazyHeroVideo src="/video/1/HR - HUMANS.mp4" />
 
               {/* Vignette overlay */}
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(9,9,76,0.35)_100%)] pointer-events-none" />
@@ -867,4 +869,3 @@ Empower your workforce with strategic recruitment and HR management solutions. H
     </div>
   )
 }
-

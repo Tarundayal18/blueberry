@@ -1,9 +1,10 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation';
 import { QuoteModal } from '../QuoteModal'
+import { LazyHeroVideo } from './LazyHeroVideo'
 
 
 
@@ -63,6 +64,15 @@ export default function Food() {
     const serviceName = serviceMap[serviceNumber];
     router.push(`/flavours/${serviceName}`);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.prefetch('/flavours/Menu_Experience_Innovation');
+      router.prefetch('/flavours/Restaurant_Setup_Strategy');
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, [router]);
 
   // Staggered top offsets like in the screenshot (col1 lower, col2 middle, col3 top)
   const offsets = ["mt-16", "mt-8", "mt-0"];
@@ -528,16 +538,7 @@ export default function Food() {
             <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(70,65,150,0.22)]" style={{ background: '#09094C' }}>
 
 
-              {/* Video */}
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full aspect-video object-cover block"
-              >
-                <source src="/video/1/FOOD.mp4" type="video/mp4" />
-              </video>
+              <LazyHeroVideo src="/video/1/FOOD.mp4" />
 
               {/* Vignette overlay */}
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(9,9,76,0.35)_100%)] pointer-events-none" />
@@ -835,4 +836,3 @@ export default function Food() {
     </div>
   )
 }
-

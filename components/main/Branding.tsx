@@ -1,13 +1,14 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import React from 'react'
 import Image from 'next/image'
 import { Plus, Lock, ArrowRight } from 'lucide-react'
 import { motion, useInView, Variants } from 'framer-motion'
 import { useRouter, usePathname } from 'next/navigation'
 import { QuoteModal } from '../QuoteModal'
+import { LazyHeroVideo } from './LazyHeroVideo'
 
 
 
@@ -74,6 +75,16 @@ export default function Branding() {
     const serviceName = serviceMap[serviceNumber] || 'Brand_Identity_Makeover';
     router.push(`/brands/${serviceName}`);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.prefetch('/brands/Brand_Identity_Makeover');
+      router.prefetch('/brands/Brand_Strategy_Consistency');
+      router.prefetch('/brands/Brand_Audit_Health_Check');
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, [router]);
 
   const goTo = (idx: number, dir: number) => {
     if (animating) return;
@@ -551,16 +562,7 @@ export default function Branding() {
             <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(70,65,150,0.22)]" style={{ background: '#09094C' }}>
 
 
-              {/* Video */}
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full aspect-video object-cover block"
-              >
-                <source src="/video/1/BRANDING.mp4" type="video/mp4" />
-              </video>
+              <LazyHeroVideo src="/video/1/BRANDING.mp4" />
 
               {/* Vignette overlay */}
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(9,9,76,0.35)_100%)] pointer-events-none" />
@@ -863,4 +865,3 @@ export default function Branding() {
     </div>
   )
 }
-
