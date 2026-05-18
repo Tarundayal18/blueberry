@@ -23,6 +23,7 @@ export default function Main() {
 
   const searchParams = useSearchParams()
   const pathname = usePathname()
+  const heroImageFit = (currentData.hero as { imageFit?: string }).imageFit === 'contain' ? 'object-contain' : 'object-cover'
 
   useEffect(() => {
     const newData = getPageDataFromPath()
@@ -202,7 +203,13 @@ export default function Main() {
 
         <section className="relative flex items-center justify-center p-8 lg:p-12 overflow-hidden">
           <div className="relative w-full h-full flex items-center justify-center">
-            <Image src="/hero-woman.jpg" alt="Professional woman" fill className="object-cover rounded-3xl" priority />
+            <Image
+              src={currentData.hero.image || '/hero-woman.jpg'}
+              alt={currentData.hero.title}
+              fill
+              className={`${heroImageFit} rounded-3xl bg-[#eef3f7]`}
+              priority
+            />
 
             {/* <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -257,7 +264,13 @@ export default function Main() {
       {/* ──────────────────────────── MOBILE HERO ───────────────────── */}
       <div className="sm:hidden flex flex-col min-h-screen">
         <div className="relative w-full h-64 flex-shrink-0">
-          <Image src="/hero-woman.jpg" alt="Professional woman" fill className="object-cover" priority />
+          <Image
+            src={currentData.hero.image || '/hero-woman.jpg'}
+            alt={currentData.hero.title}
+            fill
+            className={`${heroImageFit} bg-[#eef3f7]`}
+            priority
+          />
           {/* <div className="absolute top-4 right-4 bg-white rounded-full px-4 py-2 shadow-lg flex items-center gap-2 z-10">
             <span className="text-xs font-semibold" style={{ color: '#09094C' }}>Mobile accessibility</span>
             <div className="rounded-full p-1.5 flex-shrink-0" style={{ background: '#464196' }}>
@@ -358,7 +371,13 @@ export default function Main() {
 
           <motion.div variants={cardVariants} className="flex items-center justify-center self-stretch">
             <div className="relative w-full h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-              <Image src="/features-woman.jpg" alt="Woman with curly hair using laptop" fill className="object-cover" priority />
+              <Image
+                src={currentData.features.image || '/features-woman.jpg'}
+                alt={currentData.features.title}
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </motion.div>
 
@@ -432,7 +451,13 @@ export default function Main() {
         </div>
 
         <div className="relative w-full h-64 rounded-2xl overflow-hidden mb-8 shadow-lg">
-          <Image src="/features-woman.jpg" alt="Woman with curly hair using laptop" fill className="object-cover" priority />
+          <Image
+            src={currentData.features.image || '/features-woman.jpg'}
+            alt={currentData.features.title}
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
 
         <div className="space-y-4">
@@ -545,8 +570,8 @@ export default function Main() {
             <div className="lg:col-span-4">
               <div className="relative h-96 sm:h-[450px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=600&fit=crop"
-                  alt="Professional woman working on laptop"
+                  src={currentData.keyFeatures.image || '/hero-woman.jpg'}
+                  alt={currentData.keyFeatures.title}
                   fill
                   className="object-cover object-center hover:scale-105 transition-transform duration-500"
                   priority
