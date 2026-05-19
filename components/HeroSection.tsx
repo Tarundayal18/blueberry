@@ -79,7 +79,7 @@ function CyclingShape({ color, size, initialIndex = 0 }: { color: string; size: 
 
   return (
     <div style={{ display: 'inline-block' }}>
-      {shapes[shapeIndex](color, size)}
+      {/* {shapes[shapeIndex](color, size)} */}
     </div>
   )
 }
